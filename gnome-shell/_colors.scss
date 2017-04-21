@@ -5,6 +5,7 @@
 $base_color: if($variant =='light', #ffffff, #292929);
 $bg_color: if($variant =='light', #ededed, #393f3f);
 $fg_color: if($variant =='light', #2e3436, #eeeeec);
+$white: #fff; // for text elements that always need a white background (overview search results)
 
 $selected_fg_color: #ffffff;
 $selected_bg_color: if($variant == 'light', #4a90d9, darken(#4a90d9,20%));

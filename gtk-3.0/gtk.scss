@@ -5,6 +5,9 @@
 // - if you need to inverse a color function use the @if directive to match for dark $variant
 
 $variant: 'light';
+$asset_suffix: if($variant=='dark', '-dark', ''); // use dark assets in dark variant
+// To fix potential weirdness with headerbar: background: white linear-gradient(to top, #dbdbd7, #fafafa);
+
 
 @import 'colors';
 @import 'drawing';

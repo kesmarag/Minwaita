@@ -5,7 +5,7 @@
 $ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 $asset_suffix: if($variant=='dark', '-dark', '');
 $backdrop_transition: 200ms ease-out;
-$button_transition: all 200ms $ease-out-quad;
+$button_transition: all 250ms $ease-out-quad;
 
 * {
   padding: 0;
@@ -935,12 +935,12 @@ modelbutton.flat,
   min-height: 26px;
   padding-left: 5px;
   padding-right: 5px;
-  border-radius: 3px;
+  border-radius: 0px;
   outline-offset: -2px;
 
   @extend %undecorated_button;
 
-  &:hover { background-color: $popover_hover_color; }
+  &:hover { background-color: $popover_hover_color;}
 
   &:selected { @extend %selected_items; }
 
@@ -1992,7 +1992,7 @@ menuitem {
  ***************/
 
 popover.background {
-  padding: 2px;
+  padding: 0px;
   border-radius: 3px;
   background-color: $popover_bg_color;
 
@@ -2036,8 +2036,9 @@ popover.menu { padding: 5px; }
  * Notebooks *
  *************/
 notebook {
+
   > header {
-    padding: 1px;
+    padding: 0px;
     border-color: $borders_color;
     border-width: 1px;
     background-color: $dark_fill;
@@ -2047,12 +2048,13 @@ notebook {
       background-color: $backdrop_dark_fill;
     }
 
-    tabs { margin: -1px; }
+    tabs, tab { margin: 0px; }
+    tab{ transition: $button_transition; }
 
     &.top {
       border-bottom-style: solid;
       > tabs {
-        margin-bottom: -2px;
+        margin-bottom: 0px;
         > tab {
           &:hover { box-shadow: inset 0 -3px $borders_color; }
 
@@ -2066,7 +2068,7 @@ notebook {
     &.bottom {
       border-top-style: solid;
       > tabs {
-        margin-top: -2px;
+        margin-top: 0px;
         > tab {
           &:hover { box-shadow: inset 0 3px $borders_color; }
 
@@ -2080,7 +2082,7 @@ notebook {
     &.left {
       border-right-style: solid;
       > tabs {
-        margin-right: -2px;
+        margin-right: 0px;
         > tab {
           &:hover { box-shadow: inset -3px 0 $borders_color; }
 
@@ -2094,7 +2096,7 @@ notebook {
     &.right {
       border-left-style: solid;
       > tabs {
-        margin-left: -2px;
+        margin-left: 0px;
         > tab {
           &:hover { box-shadow: inset 3px 0 $borders_color; }
 
@@ -2175,6 +2177,7 @@ notebook {
       min-height: 20px;
       min-width: 20px;
       padding: 1px 6px;
+      margin: 0;
 
       outline-offset: -5px;
 
@@ -2303,12 +2306,16 @@ notebook {
   }
 }
 
-
 /**************
  * Scrollbars *
  **************/
 scrollbar {
+  min-width: 15px;
   $_slider_min_length: 40px;
+
+  &contents{
+    min-width: 10px;
+  }
 
   // disable steppers
   @at-root * {
@@ -3706,6 +3713,7 @@ stacksidebar {
  ****************/
 $_placesidebar_icons_opacity: 0.7;
 
+
 placessidebar {
   > viewport.frame { border-style: none; }
 
@@ -3802,6 +3810,20 @@ placesview {
     padding-left: 8px;
     padding-right: 8px;
   }
+}
+
+.nautilus-window grid overlay *:first-child { // Fixes Nautilus' heavy shadow
+border: 0
+}
+
+frame {
+border: 0
+}
+
+// Fixes the headerbar resizing to account for the switch's height in Tweak Tool from 3.24
+
+.titlebar.tweak-titlebar-right{
+  min-height: 34px;
 }
 
 
@@ -4143,7 +4165,7 @@ decoration {
   $_wm_border: if($variant=='light', transparentize(black, 0.77), transparentize($borders_color, 0.1));
   $_wm_border_backdrop: if($variant=='light', transparentize(black, 0.82), transparentize($borders_color, 0.1));
 
-  box-shadow: 0 3px 9px 1px transparentize(black, 0.5),
+  box-shadow: 0 2px 4px 1px transparentize(black, 0.5),
               0 0 0 1px $_wm_border; //doing borders with box-shadow
 
   // FIXME rationalize shadows
@@ -4215,7 +4237,24 @@ button.titlebutton {
   }
 
   &:backdrop { -gtk-icon-shadow: none; }
-}
+
+  &.close, &.maximize, &.minimize {
+
+    border: 0;
+    color: transparent;
+    border-image: none;
+    box-shadow: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: -gtk-scaled(url('assets/window-buttons/titlebutton#{$asset_suffix}.png'),url('assets/window-buttons/titlebutton#{$asset_suffix}@2.png'));
+    &:backdrop { background-image: -gtk-scaled(url('assets/window-buttons/titlebutton-unfocused#{$asset_suffix}.png'),url('assets/window-buttons/titlebutton-unfocused#{$asset_suffix}@2.png')); }
+    }
+
+    @each $state in "hover" "active"{
+        &.close:#{$state}{background-image: -gtk-scaled(url('assets/window-buttons/titlebutton-close-#{$state}#{$asset_suffix}.png'),url('assets/window-buttons/titlebutton-close-#{$state}#{$asset_suffix}@2.png')); }
+        &.minimize:#{$state} {background-image: -gtk-scaled(url('assets/window-buttons/titlebutton-minimize-#{$state}#{$asset_suffix}.png'),url('assets/window-buttons/titlebutton-minimize-#{$state}#{$asset_suffix}@2.png')); }
+        &.maximize:#{$state} {background-image: -gtk-scaled(url('assets/window-buttons/titlebutton-maximize-#{$state}#{$asset_suffix}.png'),url('assets/window-buttons/titlebutton-maximize-#{$state}#{$asset_suffix}@2.png')); }
+      }}
 
 headerbar.selection-mode button.titlebutton,
 .titlebar.selection-mode button.titlebutton {
@@ -4314,8 +4353,8 @@ cursor-handle {
   caret-color: $drop_target_color;
 }
 
-stackswitcher button.text-button { 
-  min-width: 60px; 
+stackswitcher button.text-button {
+  min-width: 60px;
   min-height: 16px;
 } // FIXME aggregate with buttons
 

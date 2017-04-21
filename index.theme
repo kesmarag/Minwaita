@@ -1,10 +1,10 @@
 [X-GNOME-Metatheme]
-Name=Adwaita Compact
+Name=Minwaita
 Type=X-GNOME-Metatheme
-Comment=Compact edition of Adwaita
+Comment= A tweaked, more compact version of Adwaita. The end goal is to offer a sleeker, more vanilla GNOME experience without moving too far away from Adwaita's design cues.
 Encoding=UTF-8
-GtkTheme=Adwaita-compact
-MetacityTheme=Adwaita-compact
+GtkTheme=Minwaita
+MetacityTheme=Minwaita
 IconTheme=Adwaita
 CursorTheme=Adwaita
 CursorSize=24

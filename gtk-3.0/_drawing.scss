@@ -491,7 +491,7 @@
   }
 }
 
-@mixin headerbar_fill($c:$headerbar_color, $hc:$top_hilight, $ov: none) {
+@mixin headerbar_fill($c:if($variant == 'light', #f5f5f4, #33393b), $hc:$top_hilight, $ov: none) { // for some reason if you just put the variable name here the headerbar spit is out fucking blue so this is hardcoded, unfortunately
 //
 // headerbar fill
 //
