@@ -14,6 +14,9 @@ Reduces excessive padding from the default GNOME, Adwaita to make it more compac
 The end goal is to provide a sleaker, more streamlined GNOME experience without the need for too many extensions and additional tools.
 
 ## Preview
+![Image One](preview-1.png)
+![Image Two](preview-2.png)
+![Image Three](preview-3.png)
 
 ## Download
 [Latest release here](Minwaita-Latest.tar.gz) also over at [GNOME-Look](https://www.gnome-look.org/p/1174686/).
