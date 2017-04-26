@@ -2,11 +2,10 @@
 Reduces excessive padding from the default GNOME, Adwaita to make it more compact. Some of the additional tweaks include: 
 
 <ul>
-<li>Window shadow being reduced to get rid of the "dirty" look it would make windows have</li>
-<li>Window buttons from the Vertex theme have been imported for a (divisely) cooler look</li>
-<li>The appmenu icon in the topbar is hidden with spacing accounted for</li>
-<li>Spacing between third-party indicators and the aggregate menu have been tweaked to make it all appear uniform</li>
-<li>Dash to Dock dock shrinkage rules have been imported to make the dock smaller</li>
+<li>Window shadow being reduced to get rid of the "dirty" look Adwaita has.</li>
+<li>New window buttons.</li>
+<li>The appmenu icon in the topbar has been removed (with spacing accounted for)</li>
+<li>The spacing in third-party indicators and the aggregate menu have been tweaked to make it all appear uniform</li>
 <li>Additional Dash to Dock styling to make the dock feel more "complete"</li>
 <li>A couple more tasteful design tweaks such as removing the progressbar borders all for a cleaner look</li>
 </ul>
