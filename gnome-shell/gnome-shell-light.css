@@ -1617,59 +1617,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   /* Shrink the dash by reducing padding and border radius */
 #dashtodockContainer #dash,
 #dashtodockContainer.dashtodock #dash {
-  border: 1px;
-  padding: 0px;
-}
-
-#dashtodockContainer.left #dash,
-#dashtodockContainer.dashtodock.left #dash {
-  border-left: 0px;
-  border-radius: 0px 9px 9px 0px;
-}
-
-#dashtodockContainer.right #dash,
-#dashtodockContainer.dashtodock.right #dash {
-  border-right: 0px;
-  border-radius: 9px 0px 0px 9px;
-}
-
-#dashtodockContainer.top #dash,
-#dashtodockContainer.dashtodock.top #dash {
-  border-top: 0px;
-  border-radius: 0px 0px 9px 9px;
-}
-
-#dashtodockContainer.bottom #dash,
-#dashtodockContainer.dashtodock.bottom #dash {
-  border-bottom: 0px;
-  border-radius: 9px 9px 0px 0px;
-}
-
-#dashtodockContainer.straight-corner #dash,
-#dashtodockContainer.straight-corner #dash {
-  border-radius: 0px;
-}
-
-#dashtodockContainer #dash .app-well-app-running-dot {
-  color: transparent;
-  background: transparent;
-}
-
-/* Scrollview style */
-.bottom #dashtodockDashScrollview,
-.top #dashtodockDashScrollview {
-  -st-hfade-offset: 24px;
-}
-
-.left #dashtodockDashScrollview,
-.right #dashtodockDashScrollview {
-  -st-vfade-offset: 24px;
-}
-
-#dashtodockContainer.running-dots .dash-item-container > StButton,
-#dashtodockContainer.dashtodock .dash-item-container > StButton {
-  transition-duration: 250;
-  background-size: contain;
+  border: 0;
+  padding: 0;
 }
 
 #dashtodockContainer .dash-item-container > StButton,
@@ -1677,184 +1626,471 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   padding: 1px 2px;
 }
 
-/* Dash height extended to the whole available vertical space */
-#dashtodockContainer.extended.top #dash,
-#dashtodockContainer.extended.right #dash,
-#dashtodockContainer.extended.bottom #dash,
-#dashtodockContainer.extended.left #dash {
-  border-radius: 0;
+/* ----------------------------------------------------------------------------------- */
+#dash .app-well-app, #dash .app-well-app-running-dot {
+  color: transparent;
+  background-color: transparent;
 }
 
-#dashtodockContainer.extended.top #dash,
-#dashtodockContainer.extended.bottom #dash {
-  border-left: 0px;
-  border-right: 0px;
+#dash .app-well-app:hover, #dash .app-well-app:focus, #dash .app-well-app:active, #dash .app-well-app-running-dot:hover, #dash .app-well-app-running-dot:focus, #dash .app-well-app-running-dot:active {
+  background-color: transparent;
 }
 
-#dashtodockContainer.extended.right #dash,
-#dashtodockContainer.extended.left #dash {
-  border-top: 0px;
-  border-bottom: 0px;
+#dash .app-well-app:hover *, #dash .app-well-app:focus *, #dash .app-well-app:active *, #dash .app-well-app-running-dot:hover *, #dash .app-well-app-running-dot:focus *, #dash .app-well-app-running-dot:active * {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#dash StWidget {
+  transition-duration: 250ms;
+}
+
+#dashtodockContainer.left #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 #eeeeec;
 }
 
 #dashtodockContainer.left .dash-item-container > StWidget.running1 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.left .dash-item-container > StWidget.running1:hover, #dashtodockContainer.left .dash-item-container > StWidget.running1.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.left .dash-item-container > StWidget.running1:active, #dashtodockContainer.left .dash-item-container > StWidget.running1.focused {
+  box-shadow: inset 5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget.running1:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget:hover, #dashtodockContainer.left .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.left #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 #eeeeec;
 }
 
 #dashtodockContainer.left .dash-item-container > StWidget.running2 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.left .dash-item-container > StWidget.running2:hover, #dashtodockContainer.left .dash-item-container > StWidget.running2.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.left .dash-item-container > StWidget.running2:active, #dashtodockContainer.left .dash-item-container > StWidget.running2.focused {
+  box-shadow: inset 5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget.running2:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget:hover, #dashtodockContainer.left .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.left #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 #eeeeec;
 }
 
 #dashtodockContainer.left .dash-item-container > StWidget.running3 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.left .dash-item-container > StWidget.running3:hover, #dashtodockContainer.left .dash-item-container > StWidget.running3.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.left .dash-item-container > StWidget.running3:active, #dashtodockContainer.left .dash-item-container > StWidget.running3.focused {
+  box-shadow: inset 5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget.running3:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget:hover, #dashtodockContainer.left .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.left #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 #eeeeec;
 }
 
 #dashtodockContainer.left .dash-item-container > StWidget.running4 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.left .dash-item-container > StWidget.running4:hover, #dashtodockContainer.left .dash-item-container > StWidget.running4.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.left .dash-item-container > StWidget.running4:active, #dashtodockContainer.left .dash-item-container > StWidget.running4.focused {
+  box-shadow: inset 5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget.running4:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.left .dash-item-container > StWidget:hover, #dashtodockContainer.left .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.right #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 #eeeeec;
 }
 
 #dashtodockContainer.right .dash-item-container > StWidget.running1 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.right .dash-item-container > StWidget.running1:hover, #dashtodockContainer.right .dash-item-container > StWidget.running1.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.right .dash-item-container > StWidget.running1:active, #dashtodockContainer.right .dash-item-container > StWidget.running1.focused {
+  box-shadow: inset -5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget.running1:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget:hover, #dashtodockContainer.right .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.right #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 #eeeeec;
 }
 
 #dashtodockContainer.right .dash-item-container > StWidget.running2 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.right .dash-item-container > StWidget.running2:hover, #dashtodockContainer.right .dash-item-container > StWidget.running2.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.right .dash-item-container > StWidget.running2:active, #dashtodockContainer.right .dash-item-container > StWidget.running2.focused {
+  box-shadow: inset -5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget.running2:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget:hover, #dashtodockContainer.right .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.right #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 #eeeeec;
 }
 
 #dashtodockContainer.right .dash-item-container > StWidget.running3 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.right .dash-item-container > StWidget.running3:hover, #dashtodockContainer.right .dash-item-container > StWidget.running3.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.right .dash-item-container > StWidget.running3:active, #dashtodockContainer.right .dash-item-container > StWidget.running3.focused {
+  box-shadow: inset -5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget.running3:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget:hover, #dashtodockContainer.right .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.right #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 #eeeeec;
 }
 
 #dashtodockContainer.right .dash-item-container > StWidget.running4 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.right .dash-item-container > StWidget.running4:hover, #dashtodockContainer.right .dash-item-container > StWidget.running4.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.right .dash-item-container > StWidget.running4:active, #dashtodockContainer.right .dash-item-container > StWidget.running4.focused {
+  box-shadow: inset -5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget.running4:hover {
+  box-shadow: inset 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.right .dash-item-container > StWidget:hover, #dashtodockContainer.right .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset -5px 0 rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.top #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px #eeeeec;
 }
 
 #dashtodockContainer.top .dash-item-container > StWidget.running1 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.top .dash-item-container > StWidget.running1:hover, #dashtodockContainer.top .dash-item-container > StWidget.running1.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.top .dash-item-container > StWidget.running1:active, #dashtodockContainer.top .dash-item-container > StWidget.running1.focused {
+  box-shadow: inset 0px 5px #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget.running1:hover {
+  box-shadow: inset 0px 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget:hover, #dashtodockContainer.top .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.top #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px #eeeeec;
 }
 
 #dashtodockContainer.top .dash-item-container > StWidget.running2 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.top .dash-item-container > StWidget.running2:hover, #dashtodockContainer.top .dash-item-container > StWidget.running2.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.top .dash-item-container > StWidget.running2:active, #dashtodockContainer.top .dash-item-container > StWidget.running2.focused {
+  box-shadow: inset 0px 5px #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget.running2:hover {
+  box-shadow: inset 0px 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget:hover, #dashtodockContainer.top .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.top #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px #eeeeec;
 }
 
 #dashtodockContainer.top .dash-item-container > StWidget.running3 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.top .dash-item-container > StWidget.running3:hover, #dashtodockContainer.top .dash-item-container > StWidget.running3.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.top .dash-item-container > StWidget.running3:active, #dashtodockContainer.top .dash-item-container > StWidget.running3.focused {
+  box-shadow: inset 0px 5px #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget.running3:hover {
+  box-shadow: inset 0px 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget:hover, #dashtodockContainer.top .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.top #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px #eeeeec;
 }
 
 #dashtodockContainer.top .dash-item-container > StWidget.running4 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.top .dash-item-container > StWidget.running4:hover, #dashtodockContainer.top .dash-item-container > StWidget.running4.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.top .dash-item-container > StWidget.running4:active, #dashtodockContainer.top .dash-item-container > StWidget.running4.focused {
+  box-shadow: inset 0px 5px #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget.running4:hover {
+  box-shadow: inset 0px 7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.top .dash-item-container > StWidget:hover, #dashtodockContainer.top .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px 5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.bottom #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px #eeeeec;
 }
 
 #dashtodockContainer.bottom .dash-item-container > StWidget.running1 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.bottom .dash-item-container > StWidget.running1:hover, #dashtodockContainer.bottom .dash-item-container > StWidget.running1.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.bottom .dash-item-container > StWidget.running1:active, #dashtodockContainer.bottom .dash-item-container > StWidget.running1.focused {
+  box-shadow: inset 0px -5px #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget.running1:hover {
+  box-shadow: inset 0px -7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget:hover, #dashtodockContainer.bottom .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.bottom #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px #eeeeec;
 }
 
 #dashtodockContainer.bottom .dash-item-container > StWidget.running2 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.bottom .dash-item-container > StWidget.running2:hover, #dashtodockContainer.bottom .dash-item-container > StWidget.running2.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.bottom .dash-item-container > StWidget.running2:active, #dashtodockContainer.bottom .dash-item-container > StWidget.running2.focused {
+  box-shadow: inset 0px -5px #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget.running2:hover {
+  box-shadow: inset 0px -7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget:hover, #dashtodockContainer.bottom .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.bottom #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px #eeeeec;
 }
 
 #dashtodockContainer.bottom .dash-item-container > StWidget.running3 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.bottom .dash-item-container > StWidget.running3:hover, #dashtodockContainer.bottom .dash-item-container > StWidget.running3.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.bottom .dash-item-container > StWidget.running3:active, #dashtodockContainer.bottom .dash-item-container > StWidget.running3.focused {
+  box-shadow: inset 0px -5px #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget.running3:hover {
+  box-shadow: inset 0px -7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget:hover, #dashtodockContainer.bottom .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
+}
+
+#dashtodockContainer.bottom #dash {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px #eeeeec;
 }
 
 #dashtodockContainer.bottom .dash-item-container > StWidget.running4 {
-  box-shadow: inset 0px -3px 0px #6f7273;
-  background: #cacac4;
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
 }
 
-#dashtodockContainer.bottom .dash-item-container > StWidget.running4:hover, #dashtodockContainer.bottom .dash-item-container > StWidget.running4.focused {
-  box-shadow: inset 0px -3px 0px #4a90d9;
-  background: #cacac4;
+#dashtodockContainer.bottom .dash-item-container > StWidget.running4:active, #dashtodockContainer.bottom .dash-item-container > StWidget.running4.focused {
+  box-shadow: inset 0px -5px #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget.running4:hover {
+  box-shadow: inset 0px -7.5px 0 #4a90d9;
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+#dashtodockContainer.bottom .dash-item-container > StWidget:hover, #dashtodockContainer.bottom .dash-item-container > StWidget:active {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0px -5px rgba(74, 144, 217, 0.5);
+}
+
+.show-apps {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.show-apps:hover, .show-apps:checked, .show-apps:active {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.show-apps:hover .show-apps-icon, .show-apps:hover StWidget, .show-apps:checked .show-apps-icon, .show-apps:checked StWidget, .show-apps:active .show-apps-icon, .show-apps:active StWidget {
+  background-color: transparent;
+  box-shadow: none;
+  color: #4a90d9;
 }
 
 /* App Vault/Grid */
@@ -1914,12 +2150,10 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .app-well-app:checked .overview-icon,
 .app-well-app.app-folder:active .overview-icon,
 .app-well-app.app-folder:checked .overview-icon,
-.show-apps:active .overview-icon,
-.show-apps:checked .overview-icon,
 .grid-search-result:active .overview-icon,
 .grid-search-result:checked .overview-icon {
-  background-color: rgba(214, 214, 209, 0.9);
   box-shadow: inset 0 1px 2px #a1a1a1;
+  color: white;
 }
 
 .app-well-app:hover .overview-icon,
@@ -1928,13 +2162,9 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .app-well-app.app-folder:hover .overview-icon,
 .app-well-app.app-folder:focus .overview-icon,
 .app-well-app.app-folder:selected .overview-icon,
-.show-apps:hover .overview-icon,
-.show-apps:focus .overview-icon,
-.show-apps:selected .overview-icon,
 .grid-search-result:hover .overview-icon,
 .grid-search-result:focus .overview-icon,
 .grid-search-result:selected .overview-icon {
-  background-color: rgba(46, 52, 54, 0.1);
   transition-duration: 0ms;
   border-image: none;
   background-image: none;
@@ -1950,7 +2180,6 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .search-provider-icon,
 .list-search-result, .app-well-app .overview-icon,
 .app-well-app.app-folder .overview-icon,
-.show-apps .overview-icon,
 .grid-search-result .overview-icon {
   color: white;
   border-radius: 4px;
@@ -1966,12 +2195,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 
 .show-apps:checked .show-apps-icon,
 .show-apps:focus .show-apps-icon {
-  color: #4a90d9;
+  color: white;
   transition-duration: 100ms;
-}
-
-.show-apps .show-apps-icon {
-  color: #2e3436;
 }
 
 .app-folder-popup {
@@ -2689,6 +2914,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 
 #LookingGlassDialog {
   background-color: rgba(0, 0, 0, 0.8);
+  color: #ccc;
   spacing: 4px;
   padding: 4px;
   border: 2px solid grey;

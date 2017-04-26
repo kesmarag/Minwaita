@@ -605,6 +605,13 @@ button {
   box-shadow: inset 0 1px white;
 }
 
+notebook > header > tabs > arrow.file, button.file.titlebutton, notebook > header > tabs > arrow.font, button.font.titlebutton, notebook > header > tabs > arrow.lock, button.lock.titlebutton,
+button.file,
+button.font,
+button.lock {
+  padding: 2px;
+}
+
 notebook > header > tabs > arrow, button.sidebar-button, button.titlebutton,
 button.flat {
   border-color: transparent;
@@ -777,8 +784,8 @@ button:disabled:checked {
 notebook > header > tabs > arrow.image-button, button.image-button.titlebutton,
 button.image-button {
   min-width: 18px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 notebook > header > tabs > arrow.text-button, button.text-button.titlebutton,
@@ -789,8 +796,8 @@ button.text-button {
 
 notebook > header > tabs > arrow.text-button.image-button, button.text-button.image-button.titlebutton,
 button.text-button.image-button {
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 notebook > header > tabs > arrow.text-button.image-button label, button.text-button.image-button.titlebutton label,
@@ -1589,6 +1596,7 @@ button {
 button.circular {
   border-radius: 9999px;
   -gtk-outline-radius: 9999px;
+  padding: 2px;
   background-origin: padding-box, border-box;
   background-clip: padding-box, border-box;
 }
@@ -4283,7 +4291,7 @@ treeview.view radio:backdrop {
  * GtkScale *
  ************/
 scale trough, scale fill, progressbar trough {
-  border: 1px solid #c4c4bf;
+  min-height: 3px;
   border-radius: 3px;
   background-color: #ddddd9;
 }
@@ -4316,7 +4324,7 @@ row:selected scale trough:disabled, scale row:selected trough:disabled, row:sele
 }
 
 scale highlight, progressbar progress {
-  border: 1px solid #184472;
+  min-height: 3px;
   border-radius: 3px;
   background-color: #4a90d9;
 }
@@ -5262,7 +5270,7 @@ levelbar:backdrop {
 }
 
 levelbar trough {
-  border: 1px solid;
+  min-height: 3px;
   padding: 2px;
   border-radius: 3px;
   color: black;
@@ -5287,7 +5295,7 @@ levelbar.vertical.discrete block {
 }
 
 levelbar block {
-  border: 1px solid;
+  min-height: 3px;
   border-radius: 1px;
 }
 
@@ -6552,6 +6560,10 @@ stackswitcher button.text-button.circular {
   min-width: 24px;
   min-height: 24px;
   padding: 0;
+}
+
+box > arrow, box > image {
+  padding: 0 2px;
 }
 
 /* GTK NAMED COLORS

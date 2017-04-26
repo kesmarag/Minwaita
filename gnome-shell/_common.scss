@@ -1736,59 +1736,8 @@ StScrollBar {
   /* Shrink the dash by reducing padding and border radius */
 #dashtodockContainer #dash,
 #dashtodockContainer.dashtodock #dash {
-  border: 1px;
-  padding: 0px;
-}
-
-#dashtodockContainer.left #dash,
-#dashtodockContainer.dashtodock.left #dash {
-  border-left: 0px;
-  border-radius: 0px 9px 9px 0px;
-}
-
-#dashtodockContainer.right #dash,
-#dashtodockContainer.dashtodock.right #dash {
-  border-right: 0px;
-  border-radius: 9px 0px 0px 9px;
-}
-
-#dashtodockContainer.top #dash,
-#dashtodockContainer.dashtodock.top #dash {
-  border-top: 0px;
-  border-radius: 0px 0px 9px 9px;
-}
-
-#dashtodockContainer.bottom #dash,
-#dashtodockContainer.dashtodock.bottom #dash {
-  border-bottom: 0px;
-  border-radius: 9px 9px 0px 0px;
-}
-
-#dashtodockContainer.straight-corner #dash,
-#dashtodockContainer.straight-corner #dash {
-  border-radius: 0px;
-}
-
-#dashtodockContainer #dash .app-well-app-running-dot {
-  color: transparent;
-  background: transparent;
-}
-
-/* Scrollview style */
-.bottom #dashtodockDashScrollview,
-.top #dashtodockDashScrollview {
-  -st-hfade-offset: 24px;
-}
-
-.left #dashtodockDashScrollview,
-.right #dashtodockDashScrollview {
-  -st-vfade-offset: 24px;
-}
-
-#dashtodockContainer.running-dots .dash-item-container > StButton,
-#dashtodockContainer.dashtodock .dash-item-container > StButton {
-  transition-duration: 250;
-  background-size: contain;
+  border: 0;
+  padding: 0;
 }
 
 #dashtodockContainer .dash-item-container > StButton,
@@ -1796,37 +1745,117 @@ StScrollBar {
   padding: 1px 2px;
 }
 
-/* Dash height extended to the whole available vertical space */
-#dashtodockContainer.extended.top #dash,
-#dashtodockContainer.extended.right #dash,
-#dashtodockContainer.extended.bottom #dash,
-#dashtodockContainer.extended.left #dash {
-  border-radius: 0;
+/* ----------------------------------------------------------------------------------- */
+
+#dash {
+  // get rid of default hover effects
+  .app-well-app, .app-well-app-running-dot {
+    color: transparent;
+    background-color: transparent;
+
+    &:hover, &:focus, &:active {
+      background-color: transparent;
+
+      * {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
 }
 
-#dashtodockContainer.extended.top #dash,
-#dashtodockContainer.extended.bottom #dash {
-  border-left: 0px;
-  border-right: 0px;
+// Fancify the dash
+
+#dash StWidget {
+  transition-duration: 250ms;
 }
 
-#dashtodockContainer.extended.right #dash,
-#dashtodockContainer.extended.left #dash {
-  border-top: 0px;
-  border-bottom: 0px;
-}
-
-//Hover over running dock items
 @each $g in left right top bottom {
   @for $i from 1 through 4 {
-    #dashtodockContainer.#{$g} .dash-item-container>StWidget.running#{$i} {
-      box-shadow: inset 0px -3px 0px if($variant == "light", darken($insensitive_fg_color, 12%), lighten($insensitive_fg_color, 5%));
-      background: if($variant == "light", darken($_bubble_bg_color, 15), lighten($_bubble_bg_color, 5));
+    $_shadow: null;
+    $_shadow_focused: null;
+    $_dash_height: 5;
+    $_dash_height_focus: $_dash_height * 1.5;
 
-      &:hover, &.focused {
-        box-shadow: inset 0px -3px 0px $selected_bg_color;
-        background: if($variant == "light", darken($_bubble_bg_color, 15), lighten($_bubble_bg_color, 5));
+    @if $g == "left" {
+      $_shadow: inset #{$_dash_height}px 0;
+      $_shadow_focused: inset #{$_dash_height_focus}px 0;
+    }
+
+    @if $g == "right" {
+      $_shadow: inset -#{$_dash_height}px 0;
+      $_shadow_focused: inset #{$_dash_height_focus}px 0;
+    }
+
+    @if $g == "bottom" {
+      $_shadow: inset 0px -#{$_dash_height}px;
+
+      $_shadow_focused: inset 0px -#{$_dash_height_focus}px 0;
+    }
+
+    @if $g == "top" {
+      $_shadow: inset 0px #{$_dash_height}px;
+
+      $_shadow_focused: inset 0px #{$_dash_height_focus}px 0;
+    }
+
+    #dashtodockContainer.#{$g} {
+      #dash {
+        background-color: rgba(0, 0, 0, 0.01);
+        box-shadow: $_shadow $_bubble_bg_color;
+
+        // the dash
+
       }
+
+      .dash-item-container {
+        > StWidget.running#{$i} {
+          background-color: rgba(0, 0, 0, 0.01);
+          box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
+
+          // running items
+
+          &:active, &.focused {
+            box-shadow: $_shadow $selected_bg_color;
+          }
+
+          &:hover {
+            box-shadow: $_shadow_focused $selected_bg_color;
+          }
+        }
+
+        > StWidget {
+          background-color: rgba(0, 0, 0, 0.01);
+
+          //box-shadow: $_shadow $base_color;
+
+          &:hover, &:active {
+            background-color: rgba(0, 0, 0, 0.01);
+            box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
+
+            // hovering over an unopen item
+
+          }
+        }
+      }
+    }
+  }
+}
+
+// Fancify the launcher
+
+.show-apps {
+  background-color: transparent;
+  box-shadow: none;
+
+  &:hover, &:checked, &:active {
+    background-color: transparent;
+    box-shadow: none;
+
+    .show-apps-icon, StWidget {
+      background-color: transparent;
+      box-shadow: none;
+      color: $selected_bg_color;
     }
   }
 }
@@ -1893,7 +1922,6 @@ StScrollBar {
 
 .app-well-app,
 .app-well-app.app-folder,
-.show-apps,
 .grid-search-result {
   & .overview-icon {
     @extend %icon_tile;
@@ -1901,14 +1929,13 @@ StScrollBar {
 
   &:active .overview-icon,
   &:checked .overview-icon {
-    background-color: transparentize(darken($osd_bg_color, 10%), 0.1);
     box-shadow: inset 0 1px 2px $osd_borders_color;
+    color: white;
   }
 
   &:hover .overview-icon,
   &:focus .overview-icon,
   &:selected .overview-icon {
-    background-color: transparentize($osd_fg_color, 0.9);
     transition-duration: 0ms;
     border-image: none;
     background-image: none;
@@ -1938,14 +1965,8 @@ StScrollBar {
 
 .show-apps:checked .show-apps-icon,
 .show-apps:focus .show-apps-icon {
-  color: if($variant == "light", $selected_bg_color, white);
+  color: white;
   transition-duration: 100ms;
-}
-
-@if $variant == "light" {
-  .show-apps .show-apps-icon {
-    color: $fg_color;
-  }
 }
 
 // Collections
@@ -2683,6 +2704,7 @@ $legacy_icon_size: 24px;
 // Looking Glass
 #LookingGlassDialog {
   background-color: rgba(0, 0, 0, 0.8);
+  color: #ccc;
   spacing: 4px;
   padding: 4px;
   border: 2px solid grey;

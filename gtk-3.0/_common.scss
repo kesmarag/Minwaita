@@ -452,6 +452,10 @@ button {
 
     @include button(normal);
 
+    &.file, &.font, &.lock{
+      padding: 2px;
+    }
+
     &.flat {
       @include button(undecorated);
       // to avoid adiacent buttons borders clashing when transitioning, the transition on the normal state is set
@@ -511,8 +515,8 @@ button {
     &.image-button {
       min-width: 18px;
       //min-height: 18px;
-      padding-left: 2px;
-      padding-right: 2px;
+      padding-left: 4px; // i know, i know but we have to keep buttons a 1:1 ratio and this is really bothering me
+      padding-right: 4px;
     }
 
     &.text-button {
@@ -521,8 +525,8 @@ button {
     }
 
     &.text-button.image-button {
-      padding-left: 2px;
-      padding-right: 2px;
+      padding-left: 4px;
+      padding-right: 4px;
 
       label {
         padding-left: 4px;
@@ -772,6 +776,7 @@ button {
   &.circular { // The Bloody Circul Button
     border-radius: 9999px;
     -gtk-outline-radius: 9999px;
+    padding: 2px;
 
     label { padding: 0; }
 
@@ -2748,7 +2753,8 @@ treeview.view radio:selected { &:focus, & { @extend %radio; }} // This is a work
  * GtkScale *
  ************/
 %scale_trough {
-  border: 1px solid $borders_color;
+  // border: 1px solid $borders_color;
+  min-height: 3px;
   border-radius: 3px;
   background-color: $dark_fill;
 
@@ -2775,7 +2781,8 @@ treeview.view radio:selected { &:focus, & { @extend %radio; }} // This is a work
 }
 
 %scale_highlight {
-  border: 1px solid $selected_borders_color;
+  // border: 1px solid $selected_borders_color;
+  min-height: 3px;
   border-radius: 3px;
   background-color: $selected_bg_color;
 
@@ -3297,7 +3304,8 @@ levelbar {
   &:backdrop { transition: $backdrop_transition; }
 
   trough {
-    border: 1px solid;
+    //border: 1px solid;
+    min-height: 3px;
     padding: 2px;
     border-radius: 3px;
     @include entry(normal);
@@ -3310,7 +3318,8 @@ levelbar {
   &.vertical.discrete block { margin: 1px 0; }
 
   block {
-    border: 1px solid;
+    //border: 1px solid;
+    min-height: 3px;
     border-radius: 1px;
 
     &.low {
@@ -4363,4 +4372,8 @@ stackswitcher button.text-button.circular { // FIXME aggregate with buttons
   min-width: 24px;
   min-height: 24px;
   padding: 0;
+}
+
+box > arrow, box > image{ // fix weird spacing
+padding: 0 2px;
 }
