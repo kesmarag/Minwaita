@@ -16,7 +16,7 @@ The end goal is to provide a sleaker, more streamlined GNOME experience without 
 ## Preview
 
 ## Download
-For now you can grab builds over at https://www.gnome-look.org/p/1174686
+[Latest release here](Minwaita-Latest.tar.gz) also over at [GNOME-Look](https://www.gnome-look.org/p/1174686/).
 
 ## Original projects
 - https://github.com/abihf/adwaita-compact
