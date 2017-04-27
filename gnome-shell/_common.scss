@@ -37,6 +37,8 @@ $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: if($variant == "light", $borders_color, transparentize($osd_fg_color, 0.8));
 $resource_path: if($variant == "light", "assets", "resource:///org/gnome/shell/theme");
 
+// the light theme depends on assets that may need some different colours
+
 stage {
   font-family: $font-family;
 
@@ -938,6 +940,7 @@ StScrollBar {
   background-color: if($variant == "light", transparent, black);
 
   @if $variant == "light" {
+    background-color: transparent;
     border-image: url("assets/panel-light.png");
   }
 
@@ -947,10 +950,8 @@ StScrollBar {
     background-color: transparent;
   }
 
-  #panelLeft, #panelCenter {
-    // spacing between activities<>app menu and such
-    spacing: 4px;
-  }
+  @include uniform_panel_spacing;
+  @include global_menu_padding;
 
   .panel-corner {
     -panel-corner-radius: $panel-corner-radius;
@@ -969,27 +970,6 @@ StScrollBar {
     }
   }
 
-  .applet-box {
-    // imterim global menu support | creds to neowiz73 from omgubuntu!
-    .applet-menu-content {
-      spacing: 0.75em;
-    }
-
-    * {
-      color: #ccc;
-
-      &:hover {
-        color: lighten($fg_color, 10%);
-      }
-
-      &:active, &:focus, &:checked {
-        background-color: rgba(0, 0, 0, 0.01);
-        box-shadow: inset 0 -2px 0px lighten($selected_bg_color, 5%);
-        color: lighten($fg_color, 10%);
-      }
-    }
-  }
-
   .panel-button {
     -natural-hpadding: 10px;
     -minimum-hpadding: 5px;
@@ -1000,10 +980,9 @@ StScrollBar {
     .app-menu-icon {
       -st-icon-style: symbolic;
       width: 0;
+
+      // to get rid of the app-menu icon | technically it's stil there it's just 0 pixels wide
       margin: 0;
-
-      //dimensions of the icon are hardcoded
-
     }
 
     &:hover {
@@ -1036,21 +1015,6 @@ StScrollBar {
         color: lighten($fg_color, 10%);
       }
     }
-  }
-
-  #panelRight {
-    padding-right: 5px;
-  }
-
-  // Makes the indicator spacing more uniform
-  #panelRight .panel-button {
-    -natural-hpadding: 2px;
-    -minimum-hpadding: 2px;
-  }
-
-  .panel-status-indicators-box,
-  .panel-status-menu-box {
-    spacing: 4px;
   }
 
   // spacing between power icon and (optional) percentage label
@@ -1415,10 +1379,8 @@ StScrollBar {
 .system-menu-action {
   color: $fg_color;
   border-radius: 32px;
-
-  /* wish we could do 50% */
   padding: 13px;
-  border: 1px solid if($variant == "light", $borders_color, lighten($borders_color, 5%));
+  border: 1px solid transparent;
 
   &:hover, &:focus {
     background-color: transparentize($fg_color, 0.9);
@@ -1600,7 +1562,7 @@ StScrollBar {
   width: 320px;
   padding: 7px 9px;
   border-radius: 6px;
-  border-color: if($variant == "light", $borders_color, darken($osd_fg_color, 50%));
+  border-color: transparent;
   color: $fg_color;
   background-color: $osd_bg_color;
 
@@ -1692,8 +1654,8 @@ StScrollBar {
   font-size: 9pt;
   color: $_bubble_fg_color;
   background-color: $_bubble_bg_color;
-  padding: 4px 0;
-  border: 1px solid rgba(128, 128, 128, 0.4);
+  padding: 0px 0;
+  border: 0;
   border-left: 0px;
   border-radius: 0px 9px 9px 0px;
 
@@ -1731,134 +1693,10 @@ StScrollBar {
   -x-offset: 8px;
 }
 
-  /*Dash to Dock*
-
-  /* Shrink the dash by reducing padding and border radius */
-#dashtodockContainer #dash,
-#dashtodockContainer.dashtodock #dash {
-  border: 0;
-  padding: 0;
-}
-
-#dashtodockContainer .dash-item-container > StButton,
-#dashtodockContainer.dashtodock .dash-item-container > StButton {
-  padding: 1px 2px;
-}
-
-/* ----------------------------------------------------------------------------------- */
-
-#dash {
-  // get rid of default hover effects
-  .app-well-app, .app-well-app-running-dot {
-    color: transparent;
-    background-color: transparent;
-
-    &:hover, &:focus, &:active {
-      background-color: transparent;
-
-      * {
-        background-color: transparent;
-        box-shadow: none;
-      }
-    }
-  }
-}
-
-// Fancify the dash
-
-#dash StWidget {
-  transition-duration: 250ms;
-}
-
-@each $g in left right top bottom {
-  @for $i from 1 through 4 {
-    $_shadow: null;
-    $_shadow_focused: null;
-    $_dash_height: 5;
-    $_dash_height_focus: $_dash_height * 1.5;
-
-    @if $g == "left" {
-      $_shadow: inset #{$_dash_height}px 0;
-      $_shadow_focused: inset #{$_dash_height_focus}px 0;
-    }
-
-    @if $g == "right" {
-      $_shadow: inset -#{$_dash_height}px 0;
-      $_shadow_focused: inset #{$_dash_height_focus}px 0;
-    }
-
-    @if $g == "bottom" {
-      $_shadow: inset 0px -#{$_dash_height}px;
-
-      $_shadow_focused: inset 0px -#{$_dash_height_focus}px 0;
-    }
-
-    @if $g == "top" {
-      $_shadow: inset 0px #{$_dash_height}px;
-
-      $_shadow_focused: inset 0px #{$_dash_height_focus}px 0;
-    }
-
-    #dashtodockContainer.#{$g} {
-      #dash {
-        background-color: rgba(0, 0, 0, 0.01);
-        box-shadow: $_shadow $_bubble_bg_color;
-
-        // the dash
-
-      }
-
-      .dash-item-container {
-        > StWidget.running#{$i} {
-          background-color: rgba(0, 0, 0, 0.01);
-          box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
-
-          // running items
-
-          &:active, &.focused {
-            box-shadow: $_shadow $selected_bg_color;
-          }
-
-          &:hover {
-            box-shadow: $_shadow_focused $selected_bg_color;
-          }
-        }
-
-        > StWidget {
-          background-color: rgba(0, 0, 0, 0.01);
-
-          //box-shadow: $_shadow $base_color;
-
-          &:hover, &:active {
-            background-color: rgba(0, 0, 0, 0.01);
-            box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
-
-            // hovering over an unopen item
-
-          }
-        }
-      }
-    }
-  }
-}
-
-// Fancify the launcher
-
-.show-apps {
-  background-color: transparent;
-  box-shadow: none;
-
-  &:hover, &:checked, &:active {
-    background-color: transparent;
-    box-shadow: none;
-
-    .show-apps-icon, StWidget {
-      background-color: transparent;
-      box-shadow: none;
-      color: $selected_bg_color;
-    }
-  }
-}
+@include shrink_dash_to_dock;
+@include remove_default_hover_effects;
+@include fancy_dock;
+@include fancy_launcher;
 
 /* App Vault/Grid */
 .icon-grid {
@@ -1867,7 +1705,7 @@ StScrollBar {
   -shell-grid-vertical-item-size: 136px;
 
   .overview-icon {
-    icon-size: 96px;
+    icon-size: 48px;
   }
 }
 
@@ -1922,15 +1760,14 @@ StScrollBar {
 
 .app-well-app,
 .app-well-app.app-folder,
-.grid-search-result {
+.grid-search-result, .show-apps {
   & .overview-icon {
     @extend %icon_tile;
   }
 
-  &:active .overview-icon,
+  &:hover .overview-icon, &:active .overview-icon,
   &:checked .overview-icon {
-    box-shadow: inset 0 1px 2px $osd_borders_color;
-    color: white;
+    box-shadow: none;
   }
 
   &:hover .overview-icon,
@@ -1939,6 +1776,21 @@ StScrollBar {
     transition-duration: 0ms;
     border-image: none;
     background-image: none;
+  }
+}
+
+.show-apps {
+  // app grid icon is white on hover and remains blue after being checked
+  &:hover {
+    .overview-icon StWidget {
+      color: white;
+    }
+  }
+
+  &:checked {
+    .overview-icon StWidget {
+      color: $selected_bg_color;
+    }
   }
 }
 

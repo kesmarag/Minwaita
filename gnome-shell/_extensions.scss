@@ -1,0 +1,202 @@
+// big and ugly "functional" pieces of the theme, included here for easy reuse in other themes
+
+@mixin global_menu_padding {
+  #panel {
+    .applet-box {
+      // imterim global menu support | creds to neowiz73 from omgubuntu! > honestly didn't think his suggestion would work
+      .applet-menu-content {
+        // they're popup-menu-items and the spacing should be consistent in this theme the spacing is 12px, we're dividing that by half
+        spacing: 6px;
+      }
+
+      .popup-menu-item {
+        // no padding just looks weird so we're going to use the remaining spacing to make the menu items themselves look nicer
+
+        padding: 0 6px;
+        color: #ccc;
+
+        &:hover {
+          // hover effect consistent with regular panel buttons
+          color: lighten($fg_color, 10%);
+        }
+
+        &:active, &:focus, &:checked {
+          // same as above
+          background-color: rgba(0, 0, 0, 0.01);
+          box-shadow: inset 0 -2px 0px lighten($selected_bg_color, 5%);
+          color: lighten($fg_color, 10%);
+        }
+      }
+    }
+  }
+}
+
+@mixin uniform_panel_spacing {
+  // Makes spacing between indicators and the aggregate menu uniform
+  #panelRight {
+    // seems to disable the upper right corner being a hotcorner -> maybe there's a better way to do this?
+    padding-right: 5px;
+  }
+
+  #panelRight .panel-button {
+    -natural-hpadding: 2px;
+    -minimum-hpadding: 2px;
+  }
+
+  .panel-status-indicators-box,
+  .panel-status-menu-box {
+    spacing: 4px;
+  }
+
+  #panelLeft, #panelCenter {
+    spacing: 4px;
+  }
+}
+
+@mixin shrink_dash_to_dock {
+  // Shrink the dash by reducing padding and border radius
+  #dashtodockContainer #dash,
+  #dashtodockContainer.dashtodock #dash {
+    border: 0;
+    padding: 0;
+  }
+
+  #dashtodockContainer .dash-item-container > StButton,
+  #dashtodockContainer.dashtodock .dash-item-container > StButton {
+    padding: 1px 2px;
+  }
+}
+
+@mixin remove_default_hover_effects {
+  // Get rid of default hover effects -> only applies to dash to dock because not everyone uses dash to dock
+  #dashtodockContainer #dash {
+    .app-well-app, .app-well-app-running-dot {
+      // the background can't be transparent otherwise the box-shadow for all the effects won't render
+      color: transparent;
+      background-color: rgba(0, 0, 0, 0.01);
+
+      &:hover, &:focus, &:active {
+        background-color: rgba(0, 0, 0, 0.01);
+
+        * {
+          background-color: rgba(0, 0, 0, 0.01);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+@mixin fancy_dock {
+  // Fancify the dash
+
+  #dash StWidget {
+    // for shadow transition (grow and fade in) effects
+    transition-duration: 250ms;
+  }
+
+  @each $g in left right top bottom {
+    @for $i from 1 through 4 {
+      $_shadow: null;
+      $_shadow_focused: null;
+      $_dash_height: 5;
+      $_dash_height_focus: $_dash_height * 1.5;
+
+      @if $g == "left" {
+        // if the dock is pinned to the left ☜(ﾟ∀ﾟ☜)
+        $_shadow: inset #{$_dash_height}px 0;
+        $_shadow_focused: inset #{$_dash_height_focus}px 0;
+      }
+
+      @if $g == "right" {
+        // to the right (☞ﾟ∀ﾟ)☞
+        $_shadow: inset -#{$_dash_height}px 0;
+        $_shadow_focused: inset #{$_dash_height_focus}px 0;
+      }
+
+      @if $g == "bottom" {
+        // now down ☟(˚▽˚)☟
+        $_shadow: inset 0px -#{$_dash_height}px;
+        $_shadow_focused: inset 0px -#{$_dash_height_focus}px 0;
+      }
+
+      @if $g == "top" {
+        // and up ☝(˚▽˚)☝
+        $_shadow: inset 0px #{$_dash_height}px;
+        $_shadow_focused: inset 0px #{$_dash_height_focus}px 0;
+      }
+
+      #dashtodockContainer.#{$g} {
+        #dash {
+          // the dash's appearance
+          background-color: rgba(0, 0, 0, 0.01);
+          box-shadow: $_shadow $_bubble_bg_color;
+        }
+
+        .dash-item-container {
+          > StWidget.running#{$i} {
+            // running items look like this
+            background-color: rgba(0, 0, 0, 0.01);
+            box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
+
+            &:active, &.focused {
+              // running and focused items look like this
+              box-shadow: $_shadow $selected_bg_color;
+            }
+
+            &:hover {
+              // hovering over a running item looks like this
+              box-shadow: $_shadow_focused $selected_bg_color;
+            }
+          }
+
+          > StWidget {
+            // unopened or regular items look like this (in most cases there should be no styling)
+            background-color: rgba(0, 0, 0, 0.01);
+
+            &:hover, &:active {
+              // hovering over an unopened item looks like this (should mirror the running item look from above imo)
+              background-color: rgba(0, 0, 0, 0.01);
+              box-shadow: $_shadow transparentize($selected_bg_color, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin fancy_launcher {
+  // Fancify the launcher | in minwaita it does nothing but remove default effects but this is the base for the ubuntu launcher, just applies background images etc.
+
+  .show-apps {
+    background-color: transparent;
+    box-shadow: none;
+
+    .show-apps-icon {
+      transition-duration: 250ms;
+    }
+
+    &:hover, &:checked, &:active {
+      background-color: transparent;
+      box-shadow: none;
+
+      .show-apps-icon, StWidget {
+        background-color: transparent;
+        box-shadow: none;
+        color: $selected_bg_color;
+      }
+    }
+  }
+
+  #dashtodockContainer {
+    .show-apps {
+      // minwaita case -> lets the app grid icon become the primary color on hover and when active (when clicked from dash to dock)
+      &:hover, &:checked {
+        .overview-icon StWidget {
+          color: $selected_bg_color;
+        }
+      }
+    }
+  }
+}

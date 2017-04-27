@@ -898,8 +898,41 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   background-color: transparent;
 }
 
+#panel #panelRight {
+  padding-right: 5px;
+}
+
+#panel #panelRight .panel-button {
+  -natural-hpadding: 2px;
+  -minimum-hpadding: 2px;
+}
+
+#panel .panel-status-indicators-box,
+#panel .panel-status-menu-box {
+  spacing: 4px;
+}
+
 #panel #panelLeft, #panel #panelCenter {
   spacing: 4px;
+}
+
+#panel #panel .applet-box .applet-menu-content {
+  spacing: 6px;
+}
+
+#panel #panel .applet-box .popup-menu-item {
+  padding: 0 6px;
+  color: #ccc;
+}
+
+#panel #panel .applet-box .popup-menu-item:hover {
+  color: white;
+}
+
+#panel #panel .applet-box .popup-menu-item:active, #panel #panel .applet-box .popup-menu-item:focus, #panel #panel .applet-box .popup-menu-item:checked {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset 0 -2px 0px #256ab1;
+  color: white;
 }
 
 #panel .panel-corner {
@@ -917,24 +950,6 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   -panel-corner-radius: 0;
   -panel-corner-background-color: transparent;
   -panel-corner-border-color: transparent;
-}
-
-#panel .applet-box .applet-menu-content {
-  spacing: 0.75em;
-}
-
-#panel .applet-box * {
-  color: #ccc;
-}
-
-#panel .applet-box *:hover {
-  color: white;
-}
-
-#panel .applet-box *:active, #panel .applet-box *:focus, #panel .applet-box *:checked {
-  background-color: rgba(0, 0, 0, 0.01);
-  box-shadow: inset 0 -2px 0px #256ab1;
-  color: white;
 }
 
 #panel .panel-button {
@@ -984,20 +999,6 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .lock-screen #panel .panel-button:hover,
 .lock-screen #panel .panel-button:active {
   color: white;
-}
-
-#panel #panelRight {
-  padding-right: 5px;
-}
-
-#panel #panelRight .panel-button {
-  -natural-hpadding: 2px;
-  -minimum-hpadding: 2px;
-}
-
-#panel .panel-status-indicators-box,
-#panel .panel-status-menu-box {
-  spacing: 4px;
 }
 
 #panel .power-status.panel-status-indicators-box {
@@ -1343,9 +1344,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .system-menu-action {
   color: #eeeeec;
   border-radius: 32px;
-  /* wish we could do 50% */
   padding: 13px;
-  border: 1px solid #282c2c;
+  border: 1px solid transparent;
 }
 
 .system-menu-action:hover, .system-menu-action:focus {
@@ -1513,7 +1513,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   width: 320px;
   padding: 7px 9px;
   border-radius: 6px;
-  border-color: #747467;
+  border-color: transparent;
   color: #eeeeec;
   background-color: #2e3436;
 }
@@ -1593,8 +1593,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   font-size: 9pt;
   color: #eeeeec;
   background-color: #2e3436;
-  padding: 4px 0;
-  border: 1px solid rgba(128, 128, 128, 0.4);
+  padding: 0px 0;
+  border: 0;
   border-left: 0px;
   border-radius: 0px 9px 9px 0px;
 }
@@ -1631,9 +1631,6 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   -x-offset: 8px;
 }
 
-/*Dash to Dock*
-
-  /* Shrink the dash by reducing padding and border radius */
 #dashtodockContainer #dash,
 #dashtodockContainer.dashtodock #dash {
   border: 0;
@@ -1645,18 +1642,17 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   padding: 1px 2px;
 }
 
-/* ----------------------------------------------------------------------------------- */
-#dash .app-well-app, #dash .app-well-app-running-dot {
+#dashtodockContainer #dash .app-well-app, #dashtodockContainer #dash .app-well-app-running-dot {
   color: transparent;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-#dash .app-well-app:hover, #dash .app-well-app:focus, #dash .app-well-app:active, #dash .app-well-app-running-dot:hover, #dash .app-well-app-running-dot:focus, #dash .app-well-app-running-dot:active {
-  background-color: transparent;
+#dashtodockContainer #dash .app-well-app:hover, #dashtodockContainer #dash .app-well-app:focus, #dashtodockContainer #dash .app-well-app:active, #dashtodockContainer #dash .app-well-app-running-dot:hover, #dashtodockContainer #dash .app-well-app-running-dot:focus, #dashtodockContainer #dash .app-well-app-running-dot:active {
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-#dash .app-well-app:hover *, #dash .app-well-app:focus *, #dash .app-well-app:active *, #dash .app-well-app-running-dot:hover *, #dash .app-well-app-running-dot:focus *, #dash .app-well-app-running-dot:active * {
-  background-color: transparent;
+#dashtodockContainer #dash .app-well-app:hover *, #dashtodockContainer #dash .app-well-app:focus *, #dashtodockContainer #dash .app-well-app:active *, #dashtodockContainer #dash .app-well-app-running-dot:hover *, #dashtodockContainer #dash .app-well-app-running-dot:focus *, #dashtodockContainer #dash .app-well-app-running-dot:active * {
+  background-color: rgba(0, 0, 0, 0.01);
   box-shadow: none;
 }
 
@@ -2101,6 +2097,10 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   box-shadow: none;
 }
 
+.show-apps .show-apps-icon {
+  transition-duration: 250ms;
+}
+
 .show-apps:hover, .show-apps:checked, .show-apps:active {
   background-color: transparent;
   box-shadow: none;
@@ -2112,6 +2112,10 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   color: #215d9c;
 }
 
+#dashtodockContainer .show-apps:hover .overview-icon StWidget, #dashtodockContainer .show-apps:checked .overview-icon StWidget {
+  color: #215d9c;
+}
+
 /* App Vault/Grid */
 .icon-grid {
   spacing: 30px;
@@ -2120,7 +2124,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 }
 
 .icon-grid .overview-icon {
-  icon-size: 96px;
+  icon-size: 48px;
 }
 
 .app-view-controls {
@@ -2163,14 +2167,16 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   transition-duration: 200ms;
 }
 
-.app-well-app:active .overview-icon,
+.app-well-app:hover .overview-icon, .app-well-app:active .overview-icon,
 .app-well-app:checked .overview-icon,
+.app-well-app.app-folder:hover .overview-icon,
 .app-well-app.app-folder:active .overview-icon,
 .app-well-app.app-folder:checked .overview-icon,
+.grid-search-result:hover .overview-icon,
 .grid-search-result:active .overview-icon,
-.grid-search-result:checked .overview-icon {
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
-  color: white;
+.grid-search-result:checked .overview-icon, .show-apps:hover .overview-icon, .show-apps:active .overview-icon,
+.show-apps:checked .overview-icon {
+  box-shadow: none;
 }
 
 .app-well-app:hover .overview-icon,
@@ -2181,10 +2187,20 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .app-well-app.app-folder:selected .overview-icon,
 .grid-search-result:hover .overview-icon,
 .grid-search-result:focus .overview-icon,
-.grid-search-result:selected .overview-icon {
+.grid-search-result:selected .overview-icon, .show-apps:hover .overview-icon,
+.show-apps:focus .overview-icon,
+.show-apps:selected .overview-icon {
   transition-duration: 0ms;
   border-image: none;
   background-image: none;
+}
+
+.show-apps:hover .overview-icon StWidget {
+  color: white;
+}
+
+.show-apps:checked .overview-icon StWidget {
+  color: #215d9c;
 }
 
 .app-well-app-running-dot {
@@ -2197,7 +2213,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 .search-provider-icon,
 .list-search-result, .app-well-app .overview-icon,
 .app-well-app.app-folder .overview-icon,
-.grid-search-result .overview-icon {
+.grid-search-result .overview-icon, .show-apps .overview-icon {
   color: white;
   border-radius: 4px;
   padding: 6px;
