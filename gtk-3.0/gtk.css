@@ -37,10 +37,6 @@
    or better, just don't.
    Everytime a wildcard is used a kitten dies, painfully.
 */
-*:disabled {
-  -gtk-icon-filter: opacity(0.5);
-}
-
 .gtkstyle-fallback {
   color: #2e3436;
   background-color: #f5f5f4;
@@ -644,7 +640,6 @@ button:hover {
   -gtk-icon-shadow: 0 1px rgba(255, 255, 255, 0.769231);
   box-shadow: inset 0 1px white;
   background-image: linear-gradient(to bottom, white, #f5f5f4 60%, #ebebe9);
-  -gtk-icon-filter: brightness(1.2);
 }
 
 notebook > header > tabs > arrow:active, button.titlebutton:active, notebook > header > tabs > arrow:checked, button.titlebutton:checked,
@@ -669,7 +664,6 @@ button:backdrop {
   -gtk-icon-shadow: none;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0);
   transition: 200ms ease-out;
-  -gtk-icon-filter: none;
 }
 
 notebook > header > tabs > arrow:backdrop label, button.sidebar-button:backdrop label, button.titlebutton:backdrop label, notebook > header > tabs > arrow:backdrop, button.sidebar-button:backdrop, button.titlebutton:backdrop, notebook > header > tabs > arrow:backdrop label, button.titlebutton:backdrop label, notebook > header > tabs > arrow:backdrop, button.titlebutton:backdrop,
@@ -2443,7 +2437,6 @@ headerbar.selection-mode button:backdrop {
   text-shadow: none;
   -gtk-icon-shadow: none;
   box-shadow: inset 0 1px rgba(255, 255, 255, 0);
-  -gtk-icon-filter: none;
   border-color: #184472;
 }
 
@@ -3262,7 +3255,7 @@ notebook > header.top {
 }
 
 notebook > header.top > tabs {
-  margin-bottom: 0px;
+  margin-bottom: -3px;
 }
 
 notebook > header.top > tabs > tab:hover {
@@ -3282,7 +3275,7 @@ notebook > header.bottom {
 }
 
 notebook > header.bottom > tabs {
-  margin-top: 0px;
+  margin-top: -3px;
 }
 
 notebook > header.bottom > tabs > tab:hover {
@@ -3302,7 +3295,7 @@ notebook > header.left {
 }
 
 notebook > header.left > tabs {
-  margin-right: 0px;
+  margin-right: -3px;
 }
 
 notebook > header.left > tabs > tab:hover {
@@ -3322,7 +3315,7 @@ notebook > header.right {
 }
 
 notebook > header.right > tabs {
-  margin-left: 0px;
+  margin-left: -3px;
 }
 
 notebook > header.right > tabs > tab:hover {
@@ -6282,10 +6275,6 @@ colorchooser .popover.osd {
   background-color: #e4e4e1;
 }
 
-.content-view:hover {
-  -gtk-icon-filter: brightness(1.2);
-}
-
 .content-view:backdrop {
   background-color: #e4e4e1;
 }
@@ -6367,41 +6356,41 @@ button.titlebutton:backdrop {
 }
 
 button.titlebutton.close, button.titlebutton.maximize, button.titlebutton.minimize {
-  border: 0;
   color: transparent;
+  border: 0;
   border-image: none;
   box-shadow: none;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton.png"), url("assets/window-buttons/titlebutton@2.png"));
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton.png"), url("assets/window-buttons/vertex/titlebutton@2.png"));
 }
 
 button.titlebutton.close:backdrop, button.titlebutton.maximize:backdrop, button.titlebutton.minimize:backdrop {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-unfocused.png"), url("assets/window-buttons/titlebutton-unfocused@2.png"));
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-unfocused.png"), url("assets/window-buttons/vertex/titlebutton-unfocused@2.png"));
 }
 
-button.titlebutton.close:hover {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-close-hover.png"), url("assets/window-buttons/titlebutton-close-hover@2.png"));
+button.titlebutton.close.close:hover, button.titlebutton.maximize.close:hover, button.titlebutton.minimize.close:hover {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-close-hover.png"), url("assets/window-buttons/vertex/titlebutton-close-hover@2.png"));
 }
 
-button.titlebutton.minimize:hover {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-minimize-hover.png"), url("assets/window-buttons/titlebutton-minimize-hover@2.png"));
+button.titlebutton.close.minimize:hover, button.titlebutton.maximize.minimize:hover, button.titlebutton.minimize.minimize:hover {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-minimize-hover.png"), url("assets/window-buttons/vertex/titlebutton-minimize-hover@2.png"));
 }
 
-button.titlebutton.maximize:hover {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-maximize-hover.png"), url("assets/window-buttons/titlebutton-maximize-hover@2.png"));
+button.titlebutton.close.maximize:hover, button.titlebutton.maximize.maximize:hover, button.titlebutton.minimize.maximize:hover {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-maximize-hover.png"), url("assets/window-buttons/vertex/titlebutton-maximize-hover@2.png"));
 }
 
-button.titlebutton.close:active {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-close-active.png"), url("assets/window-buttons/titlebutton-close-active@2.png"));
+button.titlebutton.close.close:active, button.titlebutton.maximize.close:active, button.titlebutton.minimize.close:active {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-close-active.png"), url("assets/window-buttons/vertex/titlebutton-close-active@2.png"));
 }
 
-button.titlebutton.minimize:active {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-minimize-active.png"), url("assets/window-buttons/titlebutton-minimize-active@2.png"));
+button.titlebutton.close.minimize:active, button.titlebutton.maximize.minimize:active, button.titlebutton.minimize.minimize:active {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-minimize-active.png"), url("assets/window-buttons/vertex/titlebutton-minimize-active@2.png"));
 }
 
-button.titlebutton.maximize:active {
-  background-image: -gtk-scaled(url("assets/window-buttons/titlebutton-maximize-active.png"), url("assets/window-buttons/titlebutton-maximize-active@2.png"));
+button.titlebutton.close.maximize:active, button.titlebutton.maximize.maximize:active, button.titlebutton.minimize.maximize:active {
+  background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-maximize-active.png"), url("assets/window-buttons/vertex/titlebutton-maximize-active@2.png"));
 }
 
 headerbar.selection-mode button.titlebutton,
