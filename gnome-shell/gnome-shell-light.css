@@ -904,7 +904,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 
 #panel #panel .applet-box .popup-menu-item {
   padding: 0 6px;
-  color: #ccc;
+  color: #2e3436;
 }
 
 #panel #panel .applet-box .popup-menu-item:hover {
