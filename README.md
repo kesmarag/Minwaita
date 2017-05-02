@@ -2,20 +2,21 @@
 Reduces excessive padding from the default GNOME, Adwaita to make it more compact. Some of the additional tweaks include: 
 
 <ul>
-<b>Shell</b>
+<b>GTK2/3</b>
 <li>Window shadow being reduced to get rid of the "dirty" look Adwaita has.</li>
+<li>GTK2 assets more resemble their GTK3 counterparts</li>
 <li>New window button options - OSX, Vertex and regular/no custom buttons</li>
 <li>A couple more tasteful design tweaks such as removing the progressbar borders for a cleaner look</li>
 </ul>
 
 <ul>
-<b>GTK</b>
+<b>Shell</b>
 <li>The appmenu icon in the topbar has been removed (with spacing accounted for)</li>
 <li>The spacing in third-party indicators and the aggregate menu have been tweaked to make it all appear uniform</li>
 <li>Additional Dash to Dock styling to make the dock feel more "complete" and resemble Plank</li>
 </ul>
 
-The end goal is to provide a sleaker, more streamlined GNOME experience without the need for too many extensions and additional tools.
+The end goal is to provide a sleeker, more streamlined GNOME experience without the need for too many extensions and additional tools.
 
 ## Preview
 ![Image One](preview-1.png)
