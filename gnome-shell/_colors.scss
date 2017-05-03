@@ -10,7 +10,6 @@ $osd_bg: null;
 
 @if $variant == "light" {
   $base_color: #ffffff;
-
   $bg_color: #f5f5f4;
   $fg_color: #2e3436;
   $panel_fg: $fg_color;

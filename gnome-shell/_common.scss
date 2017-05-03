@@ -113,9 +113,10 @@ stage {
 
 /* Entries */
 StEntry {
+  transition-duration: 250ms;
   border-radius: 3px;
   padding: 4px;
-  border-width: 1px;
+  border-width: if($variant == "light", 2px, 1px);
   color: $fg_color;
 
   @include entry(normal);
@@ -693,12 +694,12 @@ StScrollBar {
 
     &:active, &:checked {
       font-weight: normal;
-      background-color: darken($bg_color, 5%);
-      box-shadow: inset 0 -1px 0px lighten($borders_color, 5%);
+      background-color: $selected_bg_color;
+      box-shadow: inset 0 1px 0px lighten($borders_color, 5%);
       border-width: 1px 0 1px 0;
       border-style: solid;
       border-color: lighten($borders_color, 5%);
-      color: if($variant == "light", $fg_color, $selected_fg_color);
+      color: $selected_fg_color;
     }
 
     &:insensitive {
@@ -834,7 +835,9 @@ StScrollBar {
 }
 
 .switcher-list .item-box:selected {
-  background-color: $selected_bg_color;
+  //background-color: $selected_bg_color;
+  background-color: $bg_color;
+  border: 4px solid $selected_bg_color;
   color: $selected_fg_color;
 }
 
@@ -909,7 +912,7 @@ StScrollBar {
 %osd-panel {
   color: $_bubble_fg_color;
   background-color: $_bubble_bg_color;
-  border: 1px solid $_bubble_borders_color;
+  border: 1px solid $borders_color;
   border-radius: 12px;
   padding: 12px;
 }
@@ -970,6 +973,8 @@ StScrollBar {
     }
   }
 
+  #panelActivities {}
+
   .panel-button {
     -natural-hpadding: 10px;
     -minimum-hpadding: 5px;
@@ -979,7 +984,9 @@ StScrollBar {
 
     .app-menu-icon {
       -st-icon-style: symbolic;
-      width: 0; // to get rid of the app-menu icon | technically it's stil there it's just 0 pixels wide
+      width: 0;
+
+      // to get rid of the app-menu icon | technically it's stil there it's just 0 pixels wide
       margin: 0;
     }
 
@@ -999,6 +1006,11 @@ StScrollBar {
       }
     }
 
+    .popup-menu-arrow {
+      width: 0px;
+      height: 0px;
+    }
+
     .system-status-icon {
       icon-size: 1.09em;
       padding: 0 4px;
@@ -1012,6 +1024,14 @@ StScrollBar {
       &:focus, &:hover, &:active {
         color: lighten($fg_color, 10%);
       }
+    }
+  }
+
+  .clock-display {
+    // style the notification dot
+    &:last-child :first-child StLabel:last-child {
+      color: $selected_bg_color;
+      padding: 0 5px;
     }
   }
 
@@ -1415,8 +1435,8 @@ StScrollBar {
 
 // not really top bar only
 .popup-menu-arrow {
-  width: 0px;
-  height: 0px;
+  width: 16px;
+  height: 16px;
 }
 
 .popup-menu-icon {
@@ -1536,7 +1556,7 @@ StScrollBar {
 }
 
 .window-clone-border {
-  border: 2px solid $selected_bg_color;
+  border: 4px solid $selected_bg_color;
   border-radius: 4px;
 
   // For window decorations with round corners we can't match
@@ -1562,15 +1582,17 @@ StScrollBar {
 //search entry
 .search-entry {
   width: 320px;
-  padding: 7px 9px;
-  border-radius: 6px;
-  border-color: transparent;
+  padding: 6px 8px;
+  border-radius: 3px;
+  border: 1px solid $borders_color;
   color: $fg_color;
-  background-color: $osd_bg_color;
+  box-shadow: none;
+  background-color: $base_color;
 
   &:focus {
     padding: 6px 8px;
-    border-width: 2px;
+    box-shadow: none;
+    border-width: 1px;
     border-color: $selected_bg_color;
   }
 
@@ -1712,6 +1734,7 @@ StScrollBar {
 
   //.overview-icon-with-label:last-child {spacing: 8px;}
 }
+
 //.app-display { spacing: 20px; }
 
 .app-view-controls {
@@ -1910,7 +1933,7 @@ StScrollBar {
 %overview-panel {
   color: white;
   background-color: $_bubble_bg_color;
-  border: 1px solid $_bubble_borders_color;
+  border: 1px solid $borders_color;
 }
 
 %status_text {

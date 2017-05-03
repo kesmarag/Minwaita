@@ -52,11 +52,11 @@
     background-color: $base_color;
     border-color: lighten($borders_color, 5%);
 
-    @include _shadows($_inner_shadows);
+    //@include _shadows($_inner_shadows);
   }
 
   @if $t == focus {
-    @include _shadows($_inner_shadows);
+    //@include _shadows($_inner_shadows);
     border-color: $selected_bg_color;
   }
 
