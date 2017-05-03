@@ -143,11 +143,11 @@ StEntry {
 
 StScrollView {
   &.vfade {
-    -st-vfade-offset: 68px;
+    -st-vfade-offset: 48px;
   }
 
   &.hfade {
-    -st-hfade-offset: 68px;
+    -st-hfade-offset: 48px;
   }
 }
 
@@ -662,11 +662,9 @@ StScrollBar {
 .popup-menu {
   min-width: 15em;
 
-  .popup-menu-arrow {}
-
   //defined globally in the TOP BAR
   .popup-sub-menu {
-    background-color: darken($bg_color, 2%);
+    background-color: if($variant == "light", darken($bg_color, 5%), $base_color);
     box-shadow: inset 0 -1px 0px lighten($borders_color, 5%);
   }
 
@@ -981,9 +979,7 @@ StScrollBar {
 
     .app-menu-icon {
       -st-icon-style: symbolic;
-      width: 0;
-
-      // to get rid of the app-menu icon | technically it's stil there it's just 0 pixels wide
+      width: 0; // to get rid of the app-menu icon | technically it's stil there it's just 0 pixels wide
       margin: 0;
     }
 
@@ -995,7 +991,7 @@ StScrollBar {
       // Trick due to St limitations. It needs a background to draw
       // a box-shadow
       background-color: rgba(0, 0, 0, 0.01);
-      box-shadow: inset 0 -2px 0px if($variant == 'light', $selected_bg_color, darken($selected_bg_color, 5%));
+      box-shadow: inset 0 -3px 0px if($variant == "light", $selected_bg_color, darken($selected_bg_color, 5%));
       color: lighten($panel_fg, 10%);
 
       & > .system-status-icon {
@@ -1366,7 +1362,7 @@ StScrollBar {
 
 #appMenu {
   spinner-image: url("#{$resource_path}/process-working.svg");
-  padding: 0 11px 0 6px;
+  padding: 0 7px 0 6px;
   spacing: 4px;
 
   .label-shadow {
@@ -1419,8 +1415,8 @@ StScrollBar {
 
 // not really top bar only
 .popup-menu-arrow {
-  width: 16px;
-  height: 16px;
+  width: 0px;
+  height: 0px;
 }
 
 .popup-menu-icon {
@@ -1713,8 +1709,9 @@ StScrollBar {
   .overview-icon {
     icon-size: 48px;
   }
-}
 
+  //.overview-icon-with-label:last-child {spacing: 8px;}
+}
 //.app-display { spacing: 20px; }
 
 .app-view-controls {
