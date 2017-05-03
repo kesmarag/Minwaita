@@ -1,9 +1,10 @@
 # Minwaita
-Reduces excessive padding from the default GNOME, Adwaita to make it more compact. Some of the additional tweaks include: 
+A tweaked, more compact version of the default GNOME theme, Adwaita. Some of the additional tweaks include: 
 
 <ul>
 <b>GTK2/3</b>
 <li>Window shadow being reduced to get rid of the "dirty" look Adwaita has.</li>
+<li>New headerbar styling</li>
 <li>GTK2 assets more resemble their GTK3 counterparts</li>
 <li>New window button options - OSX, Vertex and regular/no custom buttons</li>
 <li>A couple more tasteful design tweaks such as removing the progressbar borders for a cleaner look</li>
@@ -12,6 +13,8 @@ Reduces excessive padding from the default GNOME, Adwaita to make it more compac
 <ul>
 <b>Shell</b>
 <li>The appmenu icon in the topbar has been removed (with spacing accounted for)</li>
+<li>Background and foreground colours are identical to the ones used in the GTK3 theme</li>
+<li>Dropdown arrows have been removed</li>
 <li>The spacing in third-party indicators and the aggregate menu have been tweaked to make it all appear uniform</li>
 <li>Additional Dash to Dock styling to make the dock feel more "complete" and resemble Plank</li>
 </ul>
