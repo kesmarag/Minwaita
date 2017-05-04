@@ -1,14 +1,3 @@
-//This is the RIGHT PLACE to edit the stylesheet
-
-//let's start by telling people not to edit the generated CSS:
-$cakeisalie: "This stylesheet is generated, DO NOT EDIT";
-
-/* #{$cakeisalie} */
-
-$panel-corner-radius: if($variant == "light", 0, 6px);
-
-// just looks weird otherwise
-
 /* Copyright 2009, 2015 Red Hat, Inc.
  *
  * Portions adapted from Mx's data/style/default.css
@@ -35,9 +24,11 @@ $font-family: Cantarell, Sans-Serif;
 $_bubble_bg_color: opacify($osd_bg_color, 0.25);
 $_bubble_fg_color: $osd_fg_color;
 $_bubble_borders_color: if($variant == "light", $borders_color, transparentize($osd_fg_color, 0.8));
-$resource_path: if($variant == "light", "assets", "resource:///org/gnome/shell/theme");
+$panel-corner-radius: if($variant == "light", 0, 0px);
 
-// the light theme depends on assets that may need some different colours
+// originally 6px
+$selected_border_width: if($variant == "light", 2px, 1px);
+$resource_path: if($variant == "light", "light-assets", "dark-assets");
 
 stage {
   font-family: $font-family;
@@ -51,63 +42,79 @@ stage {
 
 /* Buttons */
 .button {
-  border-radius: 3px;
-  border-width: 1px;
+  border-width: 0px;
   padding: 4px 32px;
 
   @include button(normal);
 
+  &:hover {
+    @include button(hover);
+  }
+
+  &:active {
+    @include button(active);
+  }
+
   &:focus {
     @include button(focus);
   }
 
   &:insensitive {
     @include button(insensitive);
-  }
-
-  &:active {
-    @include button(active);
   }
 }
 
 .modal-dialog-linked-button {
-  border-right-width: 1px;
+  border-width: 0px;
+  padding: 12px;
 
-  @include button(normal);
+  @include button_styling;
+  @include button(normal-linked);
+
+  &:hover, &:focus {
+    @include button(hover-linked);
+  }
+
+  &:active {
+    @include button(active-linked);
+  }
 
   &:insensitive {
     @include button(insensitive);
   }
 
-  &:active {
-    @include button(active);
-  }
+  &:first-child {
+    @include button_styling;
+    @include button(normal-linked);
 
-  &:focus {
-    @include button(focus);
-  }
-
-  padding: 12px;
-
-  @if $variant == "dark" {
-    // does some weird thing where the border-radius is black
-    &:first-child {
-      border-radius: 0px 0px 0px 6px;
+    &:hover, &:focus {
+      @include button(hover-linked);
     }
 
-    &:last-child {
-      border-right-width: 0px;
-      border-radius: 0px 0px 6px 0px;
+    &:active {
+      @include button(active-linked);
     }
 
-    &:first-child:last-child {
-      border-right-width: 0px;
-      border-radius: 0px 0px 6px 6px;
+    &:insensitive {
+      @include button(insensitive);
     }
   }
 
-  @if $variant == "light" {
-    border-radius: 0px;
+  &:last-child {
+    @include button_styling;
+    @include button(normal-linked-end);
+
+    &:hover, &:focus {
+      @include button(hover-linked-end);
+    }
+
+    &:active {
+      @include button(active-linked-end);
+    }
+
+    &:insensitive {
+      @include button(insensitive);
+    }
   }
 }
 
@@ -116,14 +123,13 @@ StEntry {
   transition-duration: 250ms;
   border-radius: 3px;
   padding: 4px;
-  border-width: if($variant == "light", 2px, 1px);
+  border-width: $selected_border_width;
   color: $fg_color;
 
   @include entry(normal);
 
-  //&:hover { @include entry(hover);}
-  &:focus {
-    @include entry(focus, $fc: transparentize($fg_color, 0.5));
+  &:focus, &:hover {
+    @include entry(focus);
   }
 
   &:insensitive {
@@ -186,16 +192,16 @@ StScrollBar {
 
 .slider {
   height: 4px;
-  -slider-height: 2px;
+  -slider-height: 4px;
 
   @if $variant == "light" {
-    color: $borders_color;
+    color: mix($fg_color, $bg_color, 30%);
   }
 
-  -slider-background-color: $insensitive_bg_color;
+  -slider-background-color: $dark_fill;
 
   //background of the trough
-  -slider-border-color: $borders_color;
+  -slider-border-color: transparent;
 
   //trough border color
   -slider-active-background-color: $selected_bg_color;
@@ -275,10 +281,10 @@ StScrollBar {
 }
 
 .modal-dialog {
-  border-radius: 9px;
+  border-radius: 3px;
   color: $fg_color;
   background-color: transparentize(darken($osd_bg_color, 10%), 0.05);
-  border: 1px solid $_bubble_borders_color;
+  border: 1px solid $borders_color;
 
   .modal-dialog-content-box {
     padding: 24px;
@@ -299,10 +305,10 @@ StScrollBar {
   }
 
   .run-dialog-label {
-    @include fontsize($font-size + 1.1);
+    @include fontsize($font-size);
 
     font-weight: bold;
-    color: darken($osd_fg_color, 10%);
+    color: $fg_color;
     padding-bottom: .4em;
   }
 }
@@ -748,7 +754,7 @@ StScrollBar {
   //not really the whole box
   margin: 6px 64px;
   background-color: transparent;
-  border-color: lighten($borders_color, 10%);
+  border-color: $separator_color;
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
@@ -835,9 +841,7 @@ StScrollBar {
 }
 
 .switcher-list .item-box:selected {
-  //background-color: $selected_bg_color;
-  background-color: $bg_color;
-  border: 4px solid $selected_bg_color;
+  background-color: $selected_bg_color;
   color: $selected_fg_color;
 }
 
@@ -896,10 +900,16 @@ StScrollBar {
   height: 50px;
   background-color: $selected_bg_color;
   color: $selected_fg_color;
-
-  //background-image: url("#{$resource_path}/ws-switch-arrow-up.png");
   background-size: 32px;
   border-radius: 8px;
+}
+
+.ws-switcher-active-up {
+  background-image: url("#{$resource_path}/ws-switch-arrow-up.png");
+}
+
+.ws-switcher-active-down {
+  background-image: url("#{$resource_path}/ws-switch-arrow-down.png");
 }
 
 .ws-switcher-box {
@@ -940,12 +950,8 @@ StScrollBar {
 #panel {
   font-weight: bold;
   height: 1.86em;
-  background-color: if($variant == "light", transparent, black);
-
-  @if $variant == "light" {
-    background-color: transparent;
-    border-image: url("assets/panel-light.png");
-  }
+  background-color: transparent;
+  border-image: url("#{$resource_path}/panel.png");
 
   &.unlock-screen,
   &.login-screen,
@@ -1074,7 +1080,7 @@ StScrollBar {
 }
 
 .datemenu-calendar-column {
-  border: 0 solid if($variant == "light", $borders_color, lighten($bg_color, 5%));
+  border: 0 solid $separator_color;
 
   &:ltr {
     border-left-width: 1px;
@@ -1106,7 +1112,7 @@ StScrollBar {
 .weather-button,
 .events-section-title {
   &:hover, &:focus {
-    background-color: lighten($bg_color, 5%);
+    background-color: if($variant == "light", darken($bg_color, 5%), lighten($bg_color, 5%));
   }
 
   &:active {
@@ -1192,7 +1198,7 @@ StScrollBar {
   border-radius: 1.4em;
 
   &:hover, &:focus {
-    background-color: lighten($bg_color, 5%);
+    background-color: if($variant == "light", darken($bg_color, 5%), lighten($bg_color, 5%));
   }
 
   &:active, &:selected {
@@ -1271,7 +1277,7 @@ StScrollBar {
   background-color: if($variant == "light", $bg_color, transparent);
 
   &:hover, &:focus {
-    background-color: lighten($bg_color, 5%);
+    background-color: if($variant == "light", darken($bg_color, 5%), lighten($bg_color, 5%));
   }
 
   margin: 1.5em 1.5em 0;
@@ -1288,7 +1294,7 @@ StScrollBar {
 
 .message {
   &:hover, &:focus {
-    background-color: lighten($bg_color, 5%);
+    background-color: if($variant == "light", darken($bg_color, 5%), lighten($bg_color, 5%));
   }
 
   border-radius: 3px;
@@ -1361,7 +1367,7 @@ StScrollBar {
   &.fallback {
     color: if($variant == "light", $fg_color, lighten($bg_color, 10%));
     background-color: $bg_color;
-    border: 2px solid $bg_color;
+    border: 2px solid transparent;
     border-radius: 2px;
     icon-size: 16px;
     padding: 8px;
@@ -1446,7 +1452,7 @@ StScrollBar {
 //close buttons
 
 .window-close {
-  background-image: url("resource:///org/gnome/shell/theme/close-window.svg");
+  background-image: url("#{$resource_path}/close-window.svg");
   background-size: 32px;
   height: 32px;
   width: 32px;
@@ -1584,7 +1590,7 @@ StScrollBar {
   width: 320px;
   padding: 6px 8px;
   border-radius: 3px;
-  border: 1px solid $borders_color;
+  border: $selected_border_width solid $borders_color;
   color: $fg_color;
   box-shadow: none;
   background-color: $base_color;
@@ -1592,7 +1598,7 @@ StScrollBar {
   &:focus {
     padding: 6px 8px;
     box-shadow: none;
-    border-width: 1px;
+    border-width: $selected_border_width;
     border-color: $selected_bg_color;
   }
 
@@ -1669,7 +1675,7 @@ StScrollBar {
 .search-provider-icon-more {
   width: 16px;
   height: 16px;
-  background-image: url("resource:///org/gnome/shell/theme/more-results.svg");
+  background-image: url(resource:///org/gnome/shell/theme/more-results.svg);
 }
 
 /* DASHBOARD */
@@ -1703,7 +1709,12 @@ StScrollBar {
   padding: 4px 8px;
 
   &:hover {
-    background: transparentize($fg_color, 0.9);
+    // get rid of superfluous hover effect
+    background: transparent;
+
+    StBin.overview-icon:last-child {
+      background: transparentize($fg_color, 0.9);
+    }
   }
 }
 
@@ -1752,18 +1763,14 @@ StScrollBar {
 
   &:first-child {
     border-right-width: 0;
-
-    @if $variant == "light" {
-      border-color: $borders_color;
-    }
-
-    border-radius: 3px 0 0 3px;
   }
 
   &:last-child {
     border-radius: 0 3px 3px 0;
+  }
 
-    @if $variant == "light" {
+  @if $variant == "light" {
+    &:last-child, &:first-child {
       border-color: $borders_color;
     }
   }
@@ -1991,15 +1998,33 @@ StScrollBar {
     background-color: if($variant == "light", $_bubble_bg_color, darken($_bubble_bg_color, 5%));
 
     &:first-child {
-      border-radius: 0 0 0 6px;
+      @include button_styling;
+      @include button(normal-linked);
+
+      &:hover, &:focus {
+        @include button(hover-linked);
+      }
+
+      &:active {
+        @include button(active-linked);
+      }
+
+      &:insensitive {
+        @include button(insensitive);
+      }
     }
 
     &:last-child {
-      border-radius: 0 0 6px 0;
-    }
+      @include button_styling;
+      @include button(normal-linked-end);
 
-    &:hover, &focus {
-      background-color: if($variant == "light", lighten($_bubble_bg_color, 2%), darken($_bubble_bg_color, 2%));
+      &:hover {
+        @include button(hover-linked-end);
+      }
+
+      &:active {
+        @include button(active-linked-end);
+      }
     }
   }
 }
@@ -2211,16 +2236,20 @@ $legacy_icon_size: 24px;
   border: 1px solid $borders-color;
   color: $fg_color;
 
-  &:focus {
-    @include button(focus);
-  }
-
-  &:hover, &:checked {
+  &:hover {
     @include button(hover);
   }
 
   &:active {
     @include button(active);
+  }
+
+  &:focus, &:checked {
+    @include button(focus);
+  }
+
+  &:insensitive {
+    @include button(insensitive);
   }
 
   &:grayed {
@@ -2328,20 +2357,22 @@ $legacy_icon_size: 24px;
   .modal-dialog-button {
     padding: 3px 18px;
 
-    &:default {
-      @include button(normal, $c: $selected_bg_color);
+    @include button(normal);
 
-      &:hover, &:focus {
-        @include button(hover, $c: $selected_bg_color);
-      }
+    &:hover {
+      @include button(hover);
+    }
 
-      &:active {
-        @include button(active, $c: $selected_bg_color);
-      }
+    &:active {
+      @include button(active);
+    }
 
-      &:insensitive {
-        @include button(insensitive);
-      }
+    &:focus {
+      @include button(focus);
+    }
+
+    &:insensitive {
+      @include button(insensitive);
     }
   }
 }

@@ -6505,7 +6505,7 @@ cursor-handle.insertion-cursor:active:dir(ltr), cursor-handle.insertion-cursor:a
 }
 
 stackswitcher button.text-button {
-  min-width: 60px;
+  min-width: 75px;
   min-height: 16px;
 }
 

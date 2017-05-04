@@ -25,7 +25,9 @@ The end goal is to provide a sleeker, more streamlined GNOME experience without 
 ![Image One](preview-1.png)
 ![Image Two](preview-2.png)
 ![Image Three](preview-3.png)
-![Image Four](preview-4.jpg)
+![Image Four](preview-4.png)
+![Image Five](preview-5.png)
+![Image Six](preview-6.png)
 
 ## Download
 [Latest release here](Minwaita-Latest.tar.gz) also over at [GNOME-Look](https://www.gnome-look.org/p/1174686/).

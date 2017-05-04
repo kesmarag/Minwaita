@@ -15,7 +15,7 @@
    id="svg3199"
    version="1.1"
    inkscape:version="0.92.1 r15371"
-   sodipodi:docname="checkbox-off-focused.svg">
+   sodipodi:docname="checkbox-off.svg">
   <defs
      id="defs3201">
     <inkscape:perspective
@@ -103,15 +103,15 @@
       <stop
          id="stop5583-0-92-8-0-7-6-5-1"
          offset="0"
-         style="stop-color:#F8F8F7;stop-opacity:1;" />
+         style="stop-color:#ffffff;stop-opacity:1;" />
       <stop
-         style="stop-color:#F8F8F7;stop-opacity:1;"
+         style="stop-color:#ededed;stop-opacity:1;"
          offset="0.40000001"
          id="stop5585-4-7-2-7-9-9-92-0" />
       <stop
          id="stop5587-6-7-2-0-3-1-21-5"
          offset="1"
-         style="stop-color:#F8F8F7;stop-opacity:1;" />
+         style="stop-color:#d3d3d3;stop-opacity:1;" />
     </linearGradient>
   </defs>
   <sodipodi:namedview
@@ -121,15 +121,15 @@
      borderopacity="1"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="11.587296"
-     inkscape:cy="1.1347014"
+     inkscape:zoom="32"
+     inkscape:cx="9.3046157"
+     inkscape:cy="10.291878"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1079"
-     inkscape:window-x="0"
+     inkscape:window-height="1144"
+     inkscape:window-x="1366"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
      borderlayer="true"
@@ -174,7 +174,7 @@
          height="29.154205"
          width="29.559635"
          id="rect11803"
-         style="color:#000000;fill:url(#linearGradient11811);fill-opacity:1;stroke:#4a90d9;stroke-width:1.54426003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         style="color:#000000;fill:url(#linearGradient11811);fill-opacity:1;stroke:#585a56;stroke-width:1.54426003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          ry="4.4233952" />
       <path
          inkscape:connector-curvature="0"
