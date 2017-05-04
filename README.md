@@ -12,9 +12,10 @@ A tweaked, more compact version of the default GNOME theme, Adwaita. Some of the
 
 <ul>
 <b>Shell</b>
+<li>There is now a light variant</li>
 <li>The appmenu icon in the topbar has been removed (with spacing accounted for)</li>
-<li>Background and foreground colours are identical to the ones used in the GTK3 theme</li>
 <li>Dropdown arrows have been removed</li>
+<li>Colours, the panel, buttons and entry fields closer resemble elements found in the GTK3 theme</li>
 <li>The spacing in third-party indicators and the aggregate menu have been tweaked to make it all appear uniform</li>
 <li>Additional Dash to Dock styling to make the dock feel more "complete" and resemble Plank</li>
 </ul>
