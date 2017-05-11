@@ -62,14 +62,14 @@ style "default" {
   GtkScale::slider_width        = 26
   GtkScale::trough-side-details = 1
 
-  GtkProgressBar::min-horizontal-bar-height = 6
-  GtkProgressBar::min-vertical-bar-width    = 6
+  GtkProgressBar::min-horizontal-bar-height = 2
+  GtkProgressBar::min-vertical-bar-width    = 2
   # Making this bigger than the min[height,width]-2*[y,x]spacing makes the
   # whole progressbar thicker, so by setting it to the exact above value
   # we get the maximum spacing between the text and the edges without
   # doing so.
-  GtkProgressBar::xspacing = 4
-  GtkProgressBar::yspacing = 4
+  GtkProgressBar::xspacing = 2
+  GtkProgressBar::yspacing = 2
 
   GtkStatusbar::shadow_type    = GTK_SHADOW_NONE
   GtkSpinButton::shadow_type   = GTK_SHADOW_NONE
@@ -85,7 +85,7 @@ style "default" {
   GtkMenuItem::toggle-spacing  = 10
 
   GtkCheckButton::indicator_spacing = 3
-  GtkOptionMenu::indicator_spacing  = {13, 13, 5, 8}
+  GtkOptionMenu::indicator_spacing  = {13, 13, 5, 1}
 
   GtkTreeView::expander-size        = 16
   GtkTreeView::vertical-separator   = 0
@@ -1502,7 +1502,7 @@ style "menubar" {
 style "menubar_item" {
 
   xthickness = 3
-  ythickness = 4
+  ythickness = 1
 
   fg[PRELIGHT] = shade(0.9, @selected_bg_color)
 
@@ -1532,7 +1532,7 @@ style "menu" {
 style "menu_item" {
 
   xthickness = 3
-  ythickness = 4
+  ythickness = 2
 
   bg[PRELIGHT]   = @selected_bg_color
   # Chromium uses this setting
@@ -1769,8 +1769,8 @@ style "separator_menu_item" {
 
 style "button" {
 
-  xthickness = 2
-  ythickness = 0
+  xthickness = 4
+  ythickness = 1
 
   # For the sake of sanity style buttons this way
   engine "pixmap" {
@@ -1839,15 +1839,15 @@ style "entry" {
 
   # We set this same as the border of the border of the entry
   # This way there's no overlap
-  xthickness = 2
-  ythickness = 0
+  xthickness = 4
+  ythickness = 3
 
 }
 
 style "combobox" {
 
-  xthickness = 2
-  ythickness = 0
+  xthickness = 4
+  ythickness = 1
 
   # This affects only the button beside an entry
   GtkButton::inner-border = {0, 0, 0, 0}
@@ -2402,8 +2402,8 @@ style "frame" {
 
 style "toolbar_button" {
 
-  xthickness = 2
-  ythickness = 2
+  xthickness = 4
+  ythickness = 1
 
   GtkButton::inner-border = {2, 2, 2, 2}
 

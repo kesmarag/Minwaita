@@ -1,4 +1,4 @@
-$darker: true;
+$darker: false;
 $variant: "light";
 $variant: if($darker == true, "light", $variant);
 $asset_suffix: if($variant=='dark', '-dark', ''); // use dark assets in dark variant

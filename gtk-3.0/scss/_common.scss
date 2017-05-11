@@ -228,12 +228,12 @@ label {
 
 assistant {
   .sidebar {
-    background-color: $base_color;
-    border-top: 1px solid $borders_color;
+    background-color: $the_base_color;
+    border-top: 1px solid $the_borders_color;
 
     &:backdrop {
-      background-color: $backdrop_base_color;
-      border-color: $backdrop_borders_color;
+      background-color: $the_backdrop_base_color;
+      border-color: $the_backdrop_borders_color;
     }
   }
 
@@ -1618,11 +1618,68 @@ combobox {
 %toolbar {
   -GtkWidget-window-dragging: true;
   padding: 2px;
-  background-color: $bg_color;
 }
 
 toolbar {
   @extend %toolbar;
+
+  &.horizontal:not(.inline-toolbar) {
+    background-color: $the_menu_color;
+
+    button {
+      @if $darker == true {
+        @include button(normal, $the_bg_color, $the_fg_color);
+
+        &.flat {
+          @include button(undecorated, $the_bg_color, $the_fg_color);
+
+          &:hover {
+            transition: $button_transition;
+            transition-duration: 500ms;
+
+            &:active {
+              transition: $button_transition;
+            }
+          }
+        }
+
+        &:hover {
+          @include button(hover, $the_bg_color, $the_fg_color);
+        }
+
+        &:active,
+        &:checked {
+          @include button(active, $the_bg_color, $the_fg_color);
+        }
+
+        &:backdrop {
+          &.flat, & {
+            @include button(backdrop, $the_bg_color, $the_fg_color);
+
+            &:active,
+            &:checked {
+              @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+            }
+
+            &:disabled {
+              @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+
+              &:active,
+              &:checked {
+                @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  toolitem {
+    label {
+      color: $the_fg_color;
+    }
+  }
 
   padding: 3px;
 
@@ -1716,15 +1773,16 @@ headerbar {
   min-height: 32px;
   border-width: 0 0 1px;
   border-style: solid;
-  border-color: $alt_borders_color;
+  border-color: $the_alt_borders_color;
   border-radius: 0;
 
   @include headerbar_fill;
 
   &:backdrop {
     border-color: $backdrop_borders_color;
-    background-color: $bg_color;
+    border-color: $the_bg_color;
     background-image: none;
+
     //box-shadow: inset 0 1px $top_hilight;
     transition: $backdrop_transition;
   }
@@ -1732,6 +1790,7 @@ headerbar {
   .title {
     padding-left: 8px;
     padding-right: 8px;
+    color: $the_fg_color;
     font-weight: bold;
   }
 
@@ -1743,28 +1802,80 @@ headerbar {
     @extend .dim-label;
   }
 
-  &.selection-mode {
-    $_hc: mix($top_hilight, $selected_bg_color, 50%);
+  button {
+    @if $darker == true {
+      & {
+        @include button(normal, $the_bg_color, $the_fg_color);
+      }
 
-    // hilight color
+      &.image-button {
+        @include button(normal, $the_bg_color, $the_fg_color);
+      }
 
-    color: $selected_fg_color;
-    border-color: $selected_borders_color;
-    text-shadow: 0 -1px transparentize(black, 0.5);
+      &.flat {
+        @include button(undecorated, $the_bg_color, $the_fg_color);
 
-    @include headerbar_fill($selected_bg_color, $_hc);
+        &:hover {
+          transition: $button_transition;
+          transition-duration: 500ms;
 
-    &:backdrop {
-      background-color: $selected_bg_color;
-      background-image: none;
-      box-shadow: inset 0 1px mix($top_hilight, $selected_bg_color, 60%);
+          &:active {
+            transition: $button_transition;
+          }
+        }
+      }
+
+      &:hover {
+        @include button(hover, $the_bg_color, $the_fg_color);
+      }
+
+      &:active,
+      &:checked {
+        @include button(active, $the_bg_color, $the_fg_color);
+      }
+
+      &:backdrop {
+        &.flat, &.text-button, & {
+          @include button(backdrop, $the_bg_color, $the_fg_color);
+
+          &:active,
+          &:checked {
+            @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+          }
+
+          &:disabled {
+            @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+
+            &:active,
+            &:checked {
+              @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+            }
+          }
+        }
+      }
     }
 
-    .subtitle:link {
-      @extend *:link:selected;
-    }
+    &.selection-mode {
+      $_hc: mix($top_hilight, $selected_bg_color, 50%);
 
-    button {
+      // hilight color
+
+      color: $selected_fg_color;
+      border-color: $selected_borders_color;
+      text-shadow: 0 -1px transparentize(black, 0.5);
+
+      @include headerbar_fill($selected_bg_color, $_hc);
+
+      &:backdrop {
+        background-color: $selected_bg_color;
+        background-image: none;
+        box-shadow: inset 0 1px mix($top_hilight, $selected_bg_color, 60%);
+      }
+
+      .subtitle:link {
+        @extend *:link:selected;
+      }
+
       @include button(normal, $selected_bg_color, $selected_fg_color);
 
       &.flat {
@@ -1931,6 +2042,10 @@ headerbar {
     margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  @if $darker == true {
+    //@include use_darker_switch;
+  }
 }
 
 .background:not(.tiled):not(.maximized):not(.solid-csd) .titlebar {
@@ -1978,7 +2093,7 @@ headerbar {
   }
 
   > separator {
-    background-color: $borders_color;
+    background-color: $the_borders_color;
   }
 
   // FIXME: use darker border?
@@ -1990,6 +2105,52 @@ headerbar {
  * Pathbars *
  ************/
 .path-bar button {
+  @if $darker == true {
+    @include button(normal, $the_bg_color, $the_fg_color);
+
+    &.flat {
+      @include button(undecorated, $the_bg_color, $the_fg_color);
+
+      &:hover {
+        transition: $button_transition;
+        transition-duration: 500ms;
+
+        &:active {
+          transition: $button_transition;
+        }
+      }
+    }
+
+    &:hover {
+      @include button(hover, $the_bg_color, $the_fg_color);
+    }
+
+    &:active,
+    &:checked {
+      @include button(active, $the_bg_color, $the_fg_color);
+    }
+
+    &:backdrop {
+      &.flat, & {
+        @include button(backdrop, $the_bg_color, $the_fg_color);
+
+        &:active,
+        &:checked {
+          @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+        }
+
+        &:disabled {
+          @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+
+          &:active,
+          &:checked {
+            @include button(backdrop-active, $the_bg_color, $the_fg_color, $borders_edge, $darker: true);
+          }
+        }
+      }
+    }
+  }
+
   &.text-button, &.image-button, & {
     padding-left: 4px;
     padding-right: 4px;
@@ -2314,18 +2475,20 @@ menubar,
   -GtkWidget-window-dragging: true;
   padding: 0px;
   box-shadow: inset 0 -1px transparentize(black, 0.9);
+  background-color: $the_base_color;
 
   &:backdrop {
-    background-color: $backdrop_bg_color;
+    background-color: $the_backdrop_bg_color;
   }
 
   > menuitem {
+    color: $the_fg_color;
     min-height: 16px;
     padding: 4px 8px;
 
     &:hover {
       //Seems like it :hover even with keyboard focus
-      box-shadow: inset 0 -3px $selected_bg_color;
+      box-shadow: inset 0 -3px $the_selected_bg_color;
       color: $link_color;
     }
 
@@ -2338,10 +2501,9 @@ menubar,
 
 menu,
 .menu,
-.context-menu {
+.context-menu, .gtk-combobox-popup-menu {
   margin: 4px;
   padding: 2px 0px;
-  background-color: $menu_color;
   border: 1px solid $borders_color;
 
   // adds borders in a non composited env
@@ -2353,10 +2515,11 @@ menu,
   // axes borders in a composited env
 
   &:backdrop {
-    background-color: $backdrop_menu_color;
+    background-color: $the_backdrop_menu_color;
   }
 
   menuitem {
+    color: $fg_color;
     min-height: 16px;
     min-width: 40px;
     padding: 4px 6px;
@@ -2364,20 +2527,20 @@ menu,
 
     &:hover {
       color: $selected_fg_color;
-      background-color: $selected_bg_color;
+      background-color: $the_selected_bg_color;
     }
 
     &:disabled {
-      color: $insensitive_fg_color;
+      color: $the_insensitive_fg_color;
 
       &:backdrop {
-        color: $backdrop_insensitive_color;
+        color: $the_backdrop_insensitive_color;
       }
     }
 
     &:backdrop,
     &:backdrop:hover {
-      color: $backdrop_fg_color;
+      color: $the_backdrop_fg_color;
       background-color: transparent;
     }
 
@@ -2548,9 +2711,11 @@ notebook {
       border-bottom-style: solid;
 
       > tabs {
-        margin-bottom: -3px;
+        margin-bottom: -1px;
 
         > tab {
+          margin-bottom: -1px;
+
           &:hover {
             box-shadow: inset 0 -3px $borders_color;
           }
@@ -2570,9 +2735,11 @@ notebook {
       border-top-style: solid;
 
       > tabs {
-        margin-top: -3px;
+        margin-top: -1px;
 
         > tab {
+          margin-top: -1px;
+
           &:hover {
             box-shadow: inset 0 3px $borders_color;
           }
@@ -2592,9 +2759,11 @@ notebook {
       border-right-style: solid;
 
       > tabs {
-        margin-right: -3px;
+        margin-right: -1px;
 
         > tab {
+          margin-right: -1px;
+
           &:hover {
             box-shadow: inset -3px 0 $borders_color;
           }
@@ -2614,9 +2783,11 @@ notebook {
       border-left-style: solid;
 
       > tabs {
-        margin-left: -3px;
+        margin-left: -1px;
 
         > tab {
+          margin-left: -1px;
+
           &:hover {
             box-shadow: inset 3px 0 $borders_color;
           }
@@ -4302,7 +4473,7 @@ row {
   &.activatable {
     &.has-open-popup,
     &:hover {
-      background-color: if(variant == light, transparentize($fg_color, 0.9), transparentize($fg_color, 0.95));
+      background-color: if($variant == "light", transparentize($the_fg_color, 0.9), transparentize($the_fg_color, 0.95));
     }
 
     &:active {
@@ -4512,7 +4683,17 @@ filechooserbutton:drop(active) {
  ***********/
 .sidebar {
   border-style: none;
-  background-color: mix($bg_color, $base_color, 50%);
+  background-color: mix($the_bg_color, $the_base_color, 50%);
+
+  label, image {
+    color: $the_fg_color;
+  }
+
+  &:backdrop {
+    label, image {
+      color: $the_backdrop_fg_color;
+    }
+  }
 
   @at-root %sidebar_left,
   &:dir(ltr),
@@ -4530,8 +4711,8 @@ filechooserbutton:drop(active) {
   }
 
   &:backdrop {
-    background-color: $backdrop_sidebar_bg_color;
-    border-color: $backdrop_borders_color;
+    background-color: $the_backdrop_sidebar_bg_color;
+    border-color: $the_backdrop_borders_color;
     transition: $backdrop_transition;
   }
 
@@ -5151,9 +5332,9 @@ decoration {
     // change when we go to backdrop, to prevent jumping windows.
     // The biggest shadow should be in the same order then in the active state
     // or the jumping will happen during the transition.
-      box-shadow: 0 2px 4px 1px transparentize(black, 0.5), 0 0 0 1px $_wm_border_backdrop;
+    box-shadow: 0 2px 4px 1px transparentize(black, 0.5), 0 0 0 1px $_wm_border_backdrop;
 
-//  box-shadow: 0 3px 9px 1px transparent, 0 2px 6px 2px transparentize(black, 0.8), 0 0 0 1px $_wm_border_backdrop;
+    //  box-shadow: 0 3px 9px 1px transparent, 0 2px 6px 2px transparentize(black, 0.8), 0 0 0 1px $_wm_border_backdrop;
     transition: $backdrop_transition;
   }
 
@@ -5205,11 +5386,13 @@ decoration {
 
 // Window Close button
 button.titlebutton {
+  transition-duration: 20ms;
+
   @extend %button_basic;
 
   @extend %button_basic.flat;
 
-  @include _button_text_shadow;
+  @include _button_text_shadow($the_fg_color, $the_bg_color, true);
 
   .selection-mode & {
     @extend %button.flat.suggested-action;
@@ -5222,7 +5405,19 @@ button.titlebutton {
   }
 
   &.close, &.maximize, &.minimize {
-    color: if($window-button-type == "vanilla", $fg_color, transparent);
+    color: if($window-button-type == "vanilla", $the_fg_color, transparent);
+
+    @include button(undecorated);
+
+    @if $darker == true and $window-button-type == "vanilla" {
+      &:hover {
+        @include button(hover, $the_bg_color, $the_fg_color);
+      }
+
+      &:active {
+        @include button(active, $the_bg_color, $the_fg_color);
+      }
+    }
 
     @if $window-button-type == "vertex" {
       border: 0;
@@ -5230,23 +5425,23 @@ button.titlebutton {
       box-shadow: none;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton#{$asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton#{$asset_suffix}@2.png"));
+      background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton#{$window_asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton#{$window_asset_suffix}@2.png"));
 
       &:backdrop {
-        background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-unfocused#{$asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-unfocused#{$asset_suffix}@2.png"));
+        background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-unfocused#{$window_asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-unfocused#{$window_asset_suffix}@2.png"));
       }
 
       @each $state in "hover" "active" {
         &.close:#{$state} {
-          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-close-#{$state}#{$asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-close-#{$state}#{$asset_suffix}@2.png"));
+          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-close-#{$state}#{$window_asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-close-#{$state}#{$window_asset_suffix}@2.png"));
         }
 
         &.minimize:#{$state} {
-          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-minimize-#{$state}#{$asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-minimize-#{$state}#{$asset_suffix}@2.png"));
+          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-minimize-#{$state}#{$window_asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-minimize-#{$state}#{$window_asset_suffix}@2.png"));
         }
 
         &.maximize:#{$state} {
-          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-maximize-#{$state}#{$asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-maximize-#{$state}#{$asset_suffix}@2.png"));
+          background-image: -gtk-scaled(url("assets/window-buttons/vertex/titlebutton-maximize-#{$state}#{$window_asset_suffix}.png"), url("assets/window-buttons/vertex/titlebutton-maximize-#{$state}#{$window_asset_suffix}@2.png"));
         }
       }
     }
@@ -5260,13 +5455,13 @@ button.titlebutton {
     background-repeat: no-repeat;
 
     &:backdrop {
-      background-image: -gtk-scaled(url("assets/window-buttons/osx/titlebutton-unfocused#{$asset_suffix}.png"), url("assets/window-buttons/osx/titlebutton-unfocused#{$asset_suffix}@2.png"));
+      background-image: -gtk-scaled(url("assets/window-buttons/osx/titlebutton-unfocused#{$window_asset_suffix}.png"), url("assets/window-buttons/osx/titlebutton-unfocused#{$window_asset_suffix}@2.png"));
     }
 
     @each $k in "close", "maximize", "minimize" {
       @each $l, $m in ("", ""), (":backdrop", "-backdrop"), (":hover", "-hover"), (":active", "-active") {
         &.#{$k}#{$l} {
-          background-image: -gtk-scaled(url("assets/window-buttons/osx/titlebutton-#{$k}#{$m}#{$asset_suffix}.png"), url("assets/window-buttons/osx/titlebutton-#{$k}#{$m}#{$asset_suffix}@2.png"));
+          background-image: -gtk-scaled(url("assets/window-buttons/osx/titlebutton-#{$k}#{$m}#{$window_asset_suffix}.png"), url("assets/window-buttons/osx/titlebutton-#{$k}#{$m}#{$window_asset_suffix}@2.png"));
           box-shadow: none;
         }
       }

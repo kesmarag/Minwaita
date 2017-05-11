@@ -1,0 +1,11 @@
+.grid-preview
+{
+background-color: rgba(255, 255, 255, 0.1);
+border: #17191a; }
+}
+
+.grid-preview:activate
+{
+  background-color: rgba(33, 93, 156, 0.6);
+  border: 1px solid rgba(33, 93, 156, 0.2); }
+}
