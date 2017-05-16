@@ -1067,7 +1067,8 @@ StScrollBar StButton#vhandle:active {
 }
 
 #panel #panelRight .panel-status-indicators-box .system-status-icon {
-  padding: 0 12px 0 0px !important;
+  padding: 0 3px 0 3px !important;
+  spacing: 3px;
 }
 
 #panel #panelLeft .panel-button, #panel #panelCenter .panel-button {
@@ -2526,6 +2527,52 @@ StScrollBar StButton#vhandle:active {
 .notification-banner .notification-button {
   padding: 4px 4px 5px;
   background-color: rgba(238, 238, 236, 0.95);
+}
+
+.notification-banner .notification-button:only-child {
+  border-image: url("light-assets/buttons/button-normal.png");
+  border-radius: 0 0 3px 3px;
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-width: 0px;
+}
+
+.notification-banner .notification-button:only-child:hover {
+  border-image: url("light-assets/buttons/button-hover.png");
+  border-radius: 0 0 3px 3px;
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-width: 0px;
+}
+
+.notification-banner .notification-button:only-child:active {
+  border-image: url("light-assets/buttons/button-active.png");
+  border-radius: 0 0 3px 3px;
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-width: 0px;
+}
+
+.notification-banner .notification-button:only-child:focus {
+  border-image: url("light-assets/buttons/button-focus.png");
+  border-radius: 0 0 3px 3px;
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-width: 0px;
+}
+
+.notification-banner .notification-button:only-child:insensitive {
+  border-image: url("light-assets/buttons/button-insensitive.png");
+  border-radius: 0 0 3px 3px;
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-width: 0px;
+  color: #616161;
 }
 
 .notification-banner .notification-button:first-child {

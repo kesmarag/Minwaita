@@ -1,5 +1,5 @@
-$darker: true;
-$variant: "light";
+$darker: false;
+$variant: "dark";
 $variant: if($darker == true, "light", $variant);
 $asset_suffix: if($variant=='dark', '-dark', ''); // use dark assets in dark variant
 $window_asset_suffix: if($variant != "light", "-dark", ""); // use darker assets in darker variant

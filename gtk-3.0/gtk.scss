@@ -3,7 +3,7 @@ $variant: "light";
 $variant: if($darker == true, "light", $variant);
 $asset_suffix: if($variant == "dark", "-dark", ""); // use dark assets in dark variant
 $window_asset_suffix: if($variant == "dark" or $darker == true, "-dark", ""); // use darker assets in darker variant
-$window_button_type: "osx"; // vanilla, vertex or osx
+$window_button_type: "vertex"; // vanilla, vertex or osx
 
 @import "scss/colors";
 @import "scss/drawing";
