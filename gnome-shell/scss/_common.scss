@@ -794,7 +794,7 @@ StScrollBar {
   .level {
     height: 0.6em;
     border-radius: 0.3em;
-    background-color: transparentize(darken($osd_bg_color, 15%), 0.5);
+    background-color: $osd_bg_color;
     color: $fg_color;
   }
 
@@ -2054,6 +2054,26 @@ StScrollBar {
   .notification-button {
     padding: 4px 4px 5px;
     background-color: if($variant == "light", $_bubble_bg_color, darken($_bubble_bg_color, 5%));
+
+    &:only-child {
+      @include button(normal);
+
+      &:hover {
+        @include button(hover);
+      }
+      
+      &:active {
+        @include button(active);
+      }
+
+      &:focus {
+        @include button(focus);
+      }
+
+      &:insensitive {
+        @include button(insensitive);
+      }
+    }
 
     &:first-child {
       @include button_styling;

@@ -122,8 +122,8 @@
       icon-shadow: 0 1px $_shadow;
     }
     @else {
-      text-shadow: 0 -1px $_shadow;
-      icon-shadow: 0 -1px $_shadow;
+      text-shadow: 0 0px $_shadow;
+      icon-shadow: 0 0px $_shadow;
     }
   }
 }
