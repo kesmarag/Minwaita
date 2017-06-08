@@ -740,6 +740,7 @@ StScrollBar {
 .popup-menu-ornament {
   text-align: right;
   width: 1.2em;
+  height: 0px;
 }
 
 .candidate-popup-boxpointer,
@@ -756,12 +757,12 @@ StScrollBar {
 }
 
 .popup-separator-menu-item {
-  //-margin-horizontal: 24px;
-  height: 1px;
+  height: 0px;
 
-  //not really the whole box
-  margin: 6px 64px;
+  margin: 0px;
   background-color: transparent;
+  padding: 0px;
+
   border-color: $separator_color;
   border-bottom-width: 1px;
   border-bottom-style: solid;
