@@ -1,7 +1,4 @@
 .gitignore
-Minwaita-Latest/
-Releases/
-metacity-1
-cinnamon
-
-*.scssc
+commit.message
+mockups
+Compiled

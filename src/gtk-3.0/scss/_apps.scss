@@ -1,0 +1,67 @@
+// Builder
+
+window.workbench {
+  docktabstrip {
+    @include notebook;
+
+    box-shadow: inset 0 -1px 0 0 $borders_color;
+
+    &:backdrop {
+      box-shadow: inset 0 -1px 0 0 $backdrop_borders_color;
+    }
+  }
+
+  docktab {
+    @include tab;
+
+    label {
+      padding: 4px;
+    }
+
+    &:hover {
+      box-shadow: inset 0 -3px $borders_color;
+    }
+
+    &:backdrop {
+      box-shadow: none;
+    }
+
+    &:checked {
+      box-shadow: inset 0 -3px $selected_bg_color;
+    }
+  }
+
+  layouttab {
+    box-shadow: inset 0 -3px $selected_bg_color;
+
+    box button {
+      @include button(undecorated);
+
+      padding: 2px 8px;
+
+      &:backdrop {
+        border: none;
+        background-image: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  greeter frame {
+    border: 1px solid $borders_color;
+  }
+}
+
+// Tweak Tool
+.tweak-titlebar-left {
+  border-color: $the_borders_color;
+
+  &:backdrop {
+    border-color: $the_backdrop_borders_color;
+  }
+}
+
+viewport.frame > list.tweak-categories {
+  background-image: image(mix($the_bg_color, $the_base_color, 50%));
+  color: $the_fg_color;
+}

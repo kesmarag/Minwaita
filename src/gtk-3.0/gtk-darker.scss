@@ -1,0 +1,15 @@
+$darker: false;
+$variant: "light";
+$variant: if($darker == true, "light", $variant);
+$asset_suffix: if($variant == "dark", "-dark", ""); // use dark assets in dark variant
+$window_asset_suffix: if($variant != "light", "-dark", ""); // use darker assets in darker variant
+$window_button_type: "vertex"; // vanilla, vertex or osx
+
+@import "scss/palette";
+@import "scss/colors";
+@import "scss/drawing";
+@import "scss/mixins";
+@import "scss/common";
+@import "scss/darker-bumps";
+@import "scss/apps";
+@import "scss/colors-public";
