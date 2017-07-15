@@ -1,0 +1,35 @@
+// When color definition differs for dark and light variant,
+// Colors are defined in the palette file while colors are assigned here
+
+$base_color: if($variant == "light", $light_base_color, $dark_base_color);
+$bg_color: if($variant == "light", $light_bg_color, $dark_bg_color);
+$fg_color: if($variant == "light", $dark_text_color, $light_text_color);
+$selected_fg_color: #ffffff;
+$selected_bg_color: $adwaita_blue;
+$selected_borders_color: if($variant == "light", darken($selected_bg_color, 30%), darken($selected_bg_color, 20%));
+//
+$borders_color: if($variant == "light", darken($bg_color, 35%), darken($bg_color, 12%));
+$borders_edge: if($variant == "light", white, transparentize($fg_color, 0.9));
+$separator_color: if($variant == "light", #DDDDDC, transparentize($borders_color, 0.8));
+$link_color: if($variant == "light", darken($selected_bg_color, 10%), lighten($selected_bg_color, 20%));
+//
+$link_visited_color: if($variant == "light", darken($selected_bg_color, 20%), lighten($selected_bg_color, 10%));
+$top_hilight: $borders_edge;
+$dark_fill: mix($borders_color, $bg_color, 50%);
+//
+$warning_color: $orange;
+$error_color: $red;
+$success_color: $green;
+$destructive_color: $light_red;
+//
+$osd_fg_color: if($variant == "light", $dark_fg_color, $light_fg_color);
+$osd_bg_color: if($variant == "light", #eeeeec, #2e3436);
+$osd_borders_color: if($variant == "light", $borders_color, transparentize(black, 0.3));
+$osd_outer_borders_color: transparentize(white, 0.9);
+$hover: transparentize($fg_color, 0.95);
+$active: $hover; // transparentize($bg_color, 0.95);
+$tooltip_borders_color: $osd_outer_borders_color;
+//insensitive state derived colors
+$insensitive_fg_color: mix($fg_color, $bg_color, 50%);
+$insensitive_bg_color: mix($bg_color, $base_color, 60%);
+$insensitive_borders_color: $borders_color;

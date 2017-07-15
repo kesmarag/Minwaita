@@ -20,7 +20,8 @@ A tweaked, more compact version of the default GNOME theme, Adwaita. Some of the
 <li>Additional Dash to Dock styling to make the dock feel more "complete" and resemble Plank</li>
 </ul>
 
-The end goal is to provide a sleeker, more streamlined GNOME experience without the need for too many extensions and additional tools.
+The end goal is to provide a sleeker, more streamlined GNOME experience without the need for too many extensions and additional tools. For a more vanilla version of this theme, see:
+https://github.com/godlyranchdressing/Adwaita-Slim
 
 ## Preview
 ![Image One](preview-1.png)

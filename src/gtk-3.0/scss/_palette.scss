@@ -1,0 +1,60 @@
+$light_base_color: #fff;
+$dark_base_color: #232729;
+$light_bg_color: #f5f5f4;
+$dark_bg_color: #33393b;
+//
+$light_fg_color: #eeeeec;
+$dark_fg_color: #2e3436;
+$light_text_color: white;
+$dark_text_color: black;
+//
+$light_insensitive_fg_color: mix($light_fg_color, $light_bg_color, 50%);
+$dark_insensitive_fg_color: mix($dark_fg_color, $dark_bg_color, 50%);
+$light_insensitive_bg_color: mix($light_bg_color, $light_base_color, 60%);
+$dark_insensitive_bg_color: mix($dark_bg_color, $dark_base_color, 60%);
+//
+$adwaita_blue: #4a90d9;
+$dark_adwaita_blue: darken(#4a90d9, 20%);
+$light_selected_borders_color: darken($adwaita_blue, 30%);
+$dark_selected_borders_color: darken($dark_adwaita_blue, 20%);
+//
+$orange: #f57900;
+$red: #cc0000;
+$green: if($variant == "light", #73d216, darken(#73d216, 10%));
+$light_red: if($variant == "light", #ef2929, darken(#ef2929, 10%));
+$light_green: #4e9a06;
+//
+$light_sidebar_bg_color: mix($light_bg_color, $light_base_color, 50%);
+$dark_sidebar_bg_color: mix($dark_bg_color, $dark_base_color, 50%);
+$light_borders_edge: transparentize(white, 0.2);
+$dark_borders_edge: transparentize($dark_fg_color, 0.93);
+//
+$light_borders_color: darken($light_bg_color, 20%);
+$dark_borders_color: darken($dark_bg_color, 10%);
+$light_alt_borders_color: darken($light_bg_color, 35%);
+$dark_alt_borders_color: darken($dark_bg_color, 17%);
+$light_top_hilight: $light_borders_edge;
+$dark_top_hilight: $dark_borders_edge;
+//
+$light_menu_color: $light_base_color;
+$dark_menu_color: mix($dark_bg_color, $dark_base_color, 20%);
+//
+$light_dark_fill: mix($light_borders_color, $light_bg_color, 50%);
+$dark_dark_fill: mix($dark_borders_color, $dark_bg_color, 50%);
+//
+$light_backdrop_base_color: darken($light_base_color, 1%);
+$dark_backdrop_base_color: lighten($dark_base_color, 1%);
+$light_backdrop_bg_color: $light_bg_color;
+$dark_backdrop_bg_color: $dark_bg_color;
+$light_backdrop_text_color: mix($light_text_color, $light_backdrop_base_color, 80%);
+$dark_backdrop_text_color: mix($dark_text_color, $dark_backdrop_base_color, 80%);
+$light_backdrop_fg_color: mix($light_fg_color, $light_backdrop_bg_color, 50%);
+$dark_backdrop_fg_color: mix($dark_fg_color, $dark_backdrop_bg_color, 50%);
+$light_backdrop_insensitive_color: darken($light_backdrop_bg_color, 15%);
+$dark_backdrop_insensitive_color: lighten($dark_backdrop_bg_color, 15%);
+$light_backdrop_sidebar_bg_color: mix($light_backdrop_bg_color, $light_backdrop_base_color, 50%);
+$dark_backdrop_sidebar_bg_color: mix($dark_backdrop_bg_color, $dark_backdrop_base_color, 50%);
+$light_backdrop_borders_color: mix($light_borders_color, $light_bg_color, 80%);
+$dark_backdrop_borders_color: mix($dark_borders_color, $dark_bg_color, 80%);
+$light_backdrop_dark_fill: mix($light_backdrop_borders_color, $light_backdrop_bg_color, 35%);
+$dark_backdrop_dark_fill: mix($dark_backdrop_borders_color, $dark_backdrop_bg_color, 35%);
