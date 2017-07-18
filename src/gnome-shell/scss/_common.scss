@@ -1653,14 +1653,16 @@ StScrollBar {
 #dash {
   font-size: 9pt;
   color: $osd_fg_color;
-  background-color: $osd_bg_color;
+  background-color: transparent;
+  border-image: url("assets/dash/dash-left.svg") 8 8 8 8;
   padding: 0;
   border: 0;
   border-left: 0;
-  border-radius: 0 9px 9px 0;
+  border-radius: 0;
 
   &:rtl {
-    border-radius: 9px 0 0 9px;
+    border-radius: 0;
+    border-image: url("assets/dash/dash-right.svg") 8 8 8 8;
   }
 
   .placeholder {

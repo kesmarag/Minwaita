@@ -17,6 +17,7 @@ $link_visited_color: if($variant == "light", darken($selected_bg_color, 20%), li
 $top_hilight: if($variant == "light", $light_top_hilight, $dark_top_hilight);
 $dark_fill: if($variant == "light", $light_dark_fill, $dark_dark_fill);
 $headerbar_color: if($variant == "light" and $darker != true, lighten($bg_color, 5%), darken($bg_color, 3%));
+$headerbar_fg_color: if($variant == "light" and $darker != true, $dark_fg_color, $light_fg_color);
 $menu_color: if($variant == "light", $light_menu_color, $dark_menu_color);
 $sidebar_bg_color: if($variant == "light", $light_sidebar_bg_color, $dark_sidebar_bg_color);
 $popover_bg_color: $bg_color;
@@ -46,7 +47,7 @@ $tooltip_borders_color: transparentize(white, 0.9);
 $shadow_color: transparentize(black, 0.9);
 
 //insensitive state derived colors
-$insensitive_fg_color: if($variant == "light", $light_insensitive_fg_color, $dark_insensitive_fg_color);
+$insensitive_fg_color: if($variant == "light", $dark_insensitive_fg_color, $light_insensitive_fg_color);
 $insensitive_bg_color: if($variant == "light", $light_insensitive_bg_color, $dark_insensitive_bg_color);
 $insensitive_borders_color: $borders_color;
 
@@ -55,7 +56,7 @@ $backdrop_base_color: if($variant == "light", $light_backdrop_base_color, $dark_
 $backdrop_text_color: if($variant == "light", $dark_backdrop_text_color, $light_backdrop_text_color);
 $backdrop_bg_color: if($variant == "light", $light_backdrop_bg_color, $dark_backdrop_bg_color);
 $backdrop_fg_color: if($variant == "light", $dark_backdrop_fg_color, $light_backdrop_fg_color);
-$backdrop_insensitive_color: if($variant == "light", $light_backdrop_insensitive_color, $dark_backdrop_insensitive_color);
+$backdrop_insensitive_color: if($variant == "light", $dark_backdrop_insensitive_color, $light_backdrop_insensitive_color);
 $backdrop_selected_fg_color: if($variant == "light", $backdrop_base_color, $backdrop_text_color);
 $backdrop_borders_color: if($variant == "light", $light_backdrop_borders_color, $dark_backdrop_borders_color);
 $backdrop_dark_fill: if($variant == "light", $light_backdrop_dark_fill, $dark_backdrop_dark_fill);

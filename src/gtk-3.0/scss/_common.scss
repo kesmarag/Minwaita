@@ -1630,11 +1630,17 @@ toolbar {
       border-image: image($dark_menu_color);
 
       button {
-        @each $a, $b in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":disabled", "insensitive"), (":backdrop", "backdrop"), (":backdrop:active, &:backdrop:checked", "backdrop-active"), (":backdrop:disabled", "backdrop-insensitive"), (":backdrop:disabled:active, :backdrop:disabled:checked", "backdrop-insensitive-active") {
-          &#{$a} {
-            @include button($b, $dark_base_color, $light_fg_color);
+        @at-root %darker_button, & {
+          @each $a, $b in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":disabled", "insensitive"), (":backdrop", "backdrop"), (":backdrop:active, &:backdrop:checked", "backdrop-active"), (":backdrop:disabled", "backdrop-insensitive"), (":backdrop:disabled:active, :backdrop:disabled:checked", "backdrop-insensitive-active") {
+            &#{$a} {
+              @include button($b, $dark_base_color, $light_fg_color);
+            }
           }
         }
+      }
+
+      toolbutton > button {
+        @include button(undecorated);
       }
 
       scale {
@@ -1776,18 +1782,36 @@ headerbar {
   min-height: 32px;
   border-width: 0 0 1px;
   border-style: solid;
-  border-color: if($darker == true, $dark_alt_borders_color, $alt_borders_color);
   border-radius: 0;
-  color: $headerbar_color;
+  color: $headerbar_fg_color;
+
+  & ~ separator {
+    background-image: image(if($darker == true, $dark_alt_borders_color, $alt_borders_color));
+  }
+
+  &, &:first-child, &:last-child, &:first-child:last-child {
+    border-color: if($darker == true, $dark_alt_borders_color, $alt_borders_color);
+
+    &:backdrop {
+      border-color: if($darker == true, $dark_backdrop_borders_color, $backdrop_borders_color);
+    }
+  }
 
   @include headerbar_fill;
 
   &:backdrop {
-    border-color: if($darker == true, $dark_backdrop_borders_color, $backdrop_borders_color);
-
     //box-shadow: inset 0 1px $top_hilight;
     transition: $backdrop_transition;
-    color: if($variant == "light" or $darker == false, $backdrop_fg_color, $light_backdrop_fg_color);
+
+    &, label.title, label.subtitle {
+      @if $variant == "light" or $variant == "dark" {
+        color: $backdrop_fg_color;
+      }
+
+      @if $darker == true {
+        color: $light_backdrop_fg_color;
+      }
+    }
   }
 
   .title {
@@ -1802,14 +1826,6 @@ headerbar {
     padding-right: 12px;
 
     @extend .dim-label;
-  }
-
-  .title, .subtitle {
-    color: $headerbar_color;
-
-    &:backdrop {
-      color: if($variant == "light" or $darker == false, $backdrop_fg_color, $light_backdrop_fg_color);
-    }
   }
 
   button {
@@ -1998,11 +2014,7 @@ headerbar {
 
   @if $darker == true {
     button {
-      @each $a, $b in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":disabled", "insensitive"), (":backdrop", "backdrop"), (":backdrop:active, &:backdrop:checked", "backdrop-active"), (":backdrop:disabled", "backdrop-insensitive"), (":backdrop:disabled:active, :backdrop:disabled:checked", "backdrop-insensitive-active") {
-        &#{$a} {
-          @include button($b, $dark_base_color, $light_fg_color);
-        }
-      }
+      @extend %darker_button;
     }
   }
 
@@ -2114,35 +2126,43 @@ headerbar {
 /************
  * Pathbars *
  ************/
-.path-bar button {
-  &.text-button, &.image-button, & {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  &.text-button.image-button label {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  &.text-button.image-button, & {
-    label:last-child {
-      padding-right: 8px;
+.path-bar {
+  button {
+    @if $darker == true {
+      & {
+        @extend %darker_button;
+      }
     }
 
-    label:first-child {
-      padding-left: 8px;
+    &.text-button, &.image-button, & {
+      padding-left: 4px;
+      padding-right: 4px;
     }
-  }
 
-  image {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
+    &.text-button.image-button label {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
-  &.slider-button {
-    padding-left: 0;
-    padding-right: 0;
+    &.text-button.image-button, & {
+      label:last-child {
+        padding-right: 8px;
+      }
+
+      label:first-child {
+        padding-left: 8px;
+      }
+    }
+
+    image {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    &.slider-button {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 
@@ -2457,8 +2477,12 @@ menubar,
     }
 
     &:disabled {
-      color: $insensitive_fg_color;
+      color: if($darker == true, $light_insensitive_fg_color, $insensitive_fg_color);
       box-shadow: none;
+    }
+
+    &:backdrop {
+      color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
     }
   }
 }
@@ -4200,13 +4224,13 @@ printdialog {
 /**********
  * Frames *
  **********/
-frame,
-.frame {
-  box-shadow: none;
+.frame,
+frame > border {
   margin: 0;
   padding: 0;
-  border-radius: 0;
   border: 1px solid $borders_color;
+  border-radius: 0;
+  box-shadow: none;
 
   &.flat {
     border-style: none;
@@ -4319,6 +4343,7 @@ separator {
  *********/
 
 row {
+  color: $text_color;
   transition: all 150ms $ease-out-quad;
 
   &:hover {
@@ -4326,6 +4351,7 @@ row {
   }
 
   &:backdrop {
+    color: $backdrop_text_color;
     transition: $backdrop_transition;
   }
 
@@ -4352,55 +4378,11 @@ row {
       &:hover {
         background-color: mix($fg_color, $selected_bg_color, 10%);
       }
-
-      &:backdrop {
-        background-color: $selected_bg_color;
-      }
     }
   }
 
   &:selected {
-    @if $darker == true {
-      &:selected {
-        @extend %selected_items_darker;
-      }
-    }
-    @else {
-      @extend %selected_items;
-    }
-  }
-}
-
-@if $darker == true {
-  .sidebar list {
-    color: $light_text_color;
-    background-color: $dark_base_color;
-    border-color: $dark_borders_color;
-
-    &:backdrop {
-      background-color: $dark_backdrop_base_color;
-      border-color: $dark_backdrop_borders_color;
-    }
-
-    row {
-      &.activatable {
-        &.has-open-popup,
-        &:hover {
-          background-color: transparentize($light_fg_color, 0.95);
-        }
-
-        &:selected {
-          &.has-open-popup,
-          &:hover {
-            background-color: mix($light_fg_color, $dark_adwaita_blue, 10%);
-          }
-
-          &:backdrop {
-            background-color: $dark_adwaita_blue;
-          }
-        }
-      }
-    }
+    @extend %selected_items;
   }
 }
 
@@ -4416,6 +4398,12 @@ row {
   background-color: $osd_bg_color;
   background-image: linear-gradient(to bottom, transparentize(black, 0.8), transparent 2px);
   background-clip: padding-box;
+
+  @if $darker == true {
+    &:backdrop {
+      color: $light_backdrop_insensitive_color;
+    }
+  }
 
   &:backdrop {
     background-image: none;
@@ -4580,10 +4568,35 @@ filechooserbutton:drop(active) {
 /***********
  * Sidebar *
  ***********/
-.sidebar {
+.sidebar, treeview.sidebar list.tweak-categories, .primary-toolbar {
   background-color: if($darker == true, $dark_sidebar_bg_color, $sidebar_bg_color);
-  color: if($darker == true, $light_fg_color, $fg_color);
+  color: if($darker == true, $light_text_color, $text_color);
   border-style: none;
+}
+
+treeview.sidebar {
+  &:selected {
+    @extend %selected_items_darker;
+  }
+}
+
+.sidebar, list.tweak-categories {
+  > row {
+    color: if($darker == true, $light_text_color, $text_color);
+
+    @if $darker == true {
+      &.activatable {
+        &.has-open-popup,
+        &:hover {
+          background-color: transparentize($light_fg_color, 0.95);
+        }
+      }
+
+      &:selected {
+        @extend %selected_items_darker;
+      }
+    }
+  }
 
   @at-root %sidebar_left,
   &:dir(ltr),
@@ -4601,7 +4614,7 @@ filechooserbutton:drop(active) {
   }
 
   &:backdrop {
-    color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
+    color: if($darker == true, $light_backdrop_text_color, $backdrop_text_color);
     background-color: if($darker == true, $dark_backdrop_sidebar_bg_color, $backdrop_sidebar_bg_color);
     border-color: if($darker == true, $dark_backdrop_borders_color, $backdrop_borders_color);
     transition: $backdrop_transition;
@@ -4625,6 +4638,8 @@ stacksidebar {
     &.left:dir(rtl) {
       list {
         @extend %sidebar_left;
+
+        border-color: $borders_color;
       }
     }
 
@@ -4632,6 +4647,8 @@ stacksidebar {
     &.right {
       list {
         @extend %sidebar_right;
+
+        border-color: $borders_color;
       }
     }
   }
@@ -4643,18 +4660,12 @@ stacksidebar {
       padding-left: 6px;
       padding-right: 6px;
     }
+  }
 
-    @if $darker == true {
-      &:selected {
-        background: $dark_adwaita_blue;
-      }
-    }
+  &.needs-attention > label {
+    @extend %needs_attention;
 
-    &.needs-attention > label {
-      @extend %needs_attention;
-
-      background-size: 6px 6px, 0 0;
-    }
+    background-size: 6px 6px, 0 0;
   }
 }
 
@@ -4683,6 +4694,20 @@ placessidebar {
       color: $selected_fg_color;
 
       @extend %selected_items_darker;
+      
+      @if $darker == true {
+        button {
+          &:hover {
+            @include button(hover, $dark_base_color, $light_fg_color);
+
+            &:active {
+              &:hover {
+                @include button(active, $dark_base_color, $light_fg_color);
+              }
+            }
+          }
+        }
+      }
     }
 
     &:disabled {
@@ -5318,12 +5343,15 @@ button.titlebutton {
       transition-duration: 150ms;
 
       @if $darker == true {
+        @include button(normal, $dark_bg_color, $light_fg_color);
+        @include button(undecorated);
+
         &:hover {
-          @include button(hover, $bg_color, $fg_color);
+          @include button(hover, $dark_bg_color, $light_fg_color);
         }
 
         &:active {
-          @include button(active, $bg_color, $fg_color);
+          @include button(active, $dark_bg_color, $light_fg_color);
         }
       }
     }
@@ -5403,21 +5431,20 @@ headerbar.selection-mode button.titlebutton,
 }
 
 %selected_items_darker {
-  background-color: $dark_adwaita_blue;
-
-  @at-root %nobg_selected_items, & {
+  &, &:hover {
+    background-color: $dark_adwaita_blue;
     color: $selected_fg_color;
+  }
+
+  &:disabled {
+    color: mix($selected_fg_color, $dark_adwaita_blue, 50%);
+  }
+
+  &:backdrop {
+    color: $backdrop_selected_fg_color;
 
     &:disabled {
-      color: mix($selected_fg_color, $dark_adwaita_blue, 50%);
-    }
-
-    &:backdrop {
-      color: $backdrop_selected_fg_color;
-
-      &:disabled {
-        color: mix($backdrop_selected_fg_color, $dark_adwaita_blue, 30%);
-      }
+      color: mix($backdrop_selected_fg_color, $dark_adwaita_blue, 30%);
     }
   }
 }

@@ -2,7 +2,7 @@ $darker: false;
 $variant: "light";
 $variant: if($darker == true, "light", $variant);
 $asset_suffix: if($variant == "dark", "-dark", ""); // use dark assets in dark variant
-$window_asset_suffix: if($variant != "light", "-dark", ""); // use darker assets in darker variant
+$window_asset_suffix: if($variant != "light"or $darker == true, "-dark", ""); // use darker assets in darker variant
 $window_button_type: "vanilla"; // vanilla, vertex or osx
 
 @import "scss/palette";

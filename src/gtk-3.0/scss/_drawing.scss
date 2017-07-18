@@ -607,7 +607,7 @@
     background-color: if($dark == true, $dark_insensitive_bg_color, $insensitive_bg_color);
     text-shadow: none;
   }
-  
+
   @if $t == backdrop {
     color: if($dark == true, $dark_backdrop_fg_color, $backdrop_fg_color);
     border-color: if($dark == true, $dark_backdrop_borders_color, $backdrop_borders_color);
