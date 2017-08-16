@@ -1,8 +1,13 @@
 #! /bin/bash
+THEME="Minwaita"
 cd Compiled
-for variant in "" '-OSX' '-Vanilla'; do
-  cd Minwaita${variant^}
-  tar -czf Minwaita${variant^}.tar.gz Minwaita${variant^} Minwaita${variant^}-Dark Minwaita-Light-Shell
-  mv Minwaita${variant^}.tar.gz ../..
+
+for buttons in '' '-OSX' '-Vanilla'; do
+for variant in '' '-Dark' '-Darker'; do
+  cd $THEME${buttons}${variant}
+  tar -czf $THEME${buttons}${variant}.tar.gz *
+  mv $THEME${buttons}${variant}.tar.gz ../..
   cd ..
+done
+done
 done
