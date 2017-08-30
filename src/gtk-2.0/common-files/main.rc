@@ -110,7 +110,7 @@ style "default" {
   bg[ACTIVE]      = @bg_color
 
   fg[NORMAL]      = @fg_color
-  fg[PRELIGHT]    = @fg_color
+  fg[PRELIGHT]    = @selected_bg_color
   fg[SELECTED]    = @selected_fg_color
   fg[INSENSITIVE] = mix (0.5, @fg_color, @bg_color)
   fg[ACTIVE]      = @fg_color
@@ -1530,7 +1530,8 @@ style "menu" {
   bg[INSENSITIVE] = @base_color
   bg[PRELIGHT]    = @base_color
   bg[SELECTED]    = @selected_bg_color
-
+  fg[NORMAL]    = @menu_text_color
+  text[NORMAL]   = @menu_text_color
 }
 
 style "menu_item" {

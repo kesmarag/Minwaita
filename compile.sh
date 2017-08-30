@@ -39,6 +39,7 @@ for buttons in "" "-OSX" "-Vanilla"; do
         cp $INPUT/window-buttons/osx/dark/* $OUTPUT/assets/window-buttons
       else
         cp $INPUT/window-buttons/osx/light/* $OUTPUT/assets/window-buttons
+        cp $INPUT/window-buttons/osx/dark/* $OUTPUT/assets/window-buttons
       fi
     fi
 
@@ -47,6 +48,7 @@ for buttons in "" "-OSX" "-Vanilla"; do
         cp $INPUT/window-buttons/vertex/dark/* $OUTPUT/assets/window-buttons
       else
         cp $INPUT/window-buttons/vertex/light/* $OUTPUT/assets/window-buttons
+        cp $INPUT/window-buttons/vertex/dark/* $OUTPUT/assets/window-buttons
       fi
     fi
 

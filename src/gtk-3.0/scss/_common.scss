@@ -1628,28 +1628,42 @@ combobox {
   padding: 2px;
 }
 
-toolbar {
+toolbar, .toolbar {
   @extend %toolbar;
 
   &.horizontal:not(.inline-toolbar) {
     // background-color: if($darker == true, $dark_menu_color, $menu_color);
 
-    // @if $darker == true {
-    //   border-image: image($dark_menu_color);
-    //
-    //   button {
-    //     @at-root %darker_button, & {
-    //       @each $a, $b in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":disabled", "insensitive"), (":backdrop", "backdrop"), (":backdrop:active, &:backdrop:checked", "backdrop-active"), (":backdrop:disabled", "backdrop-insensitive"), (":backdrop:disabled:active, :backdrop:disabled:checked", "backdrop-insensitive-active") {
-    //         &#{$a} {
-    //           @include button($b, $dark_base_color, $light_fg_color);
-    //         }
-    //       }
-    //     }
-    //   }
-    //
-    //   toolbutton > button {
-    //     @include button(undecorated);
-    //   }
+    @if $darker == true {
+      &:backdrop {
+        background: $dark_backdrop_base_color;
+
+        label {
+          color: $light_backdrop_text_color;
+        }
+      }
+
+      border-image: image($dark_menu_color);
+
+      button {
+        @at-root %darker_button, & {
+          @each $a, $b in ("", "normal"), (":hover", "hover"), (":active, &:checked", "active"), (":disabled", "insensitive"), (":backdrop", "backdrop"), (":backdrop:active, &:backdrop:checked", "backdrop-active"), (":backdrop:disabled", "backdrop-insensitive"), (":backdrop:disabled:active, :backdrop:disabled:checked", "backdrop-insensitive-active") {
+            &#{$a} {
+              @include button($b, $dark_base_color, $light_fg_color);
+            }
+          }
+        }
+      }
+
+      toolbutton > button, button.flat {
+        &, &:backdrop {
+          &, &:disabled {
+            @extend %undecorated_button;
+          }
+        }
+      }
+    }
+
     //
     //   scale {
     //     highlight {
@@ -1688,6 +1702,14 @@ toolbar {
     toolitem {
       label {
         color: if($darker == true, $light_fg_color, $fg_color);
+      }
+    }
+  }
+
+  toolbutton > button {
+    &, &:backdrop {
+      &:disabled {
+        -gtk-icon-effect: dim;
       }
     }
   }
@@ -1810,15 +1832,11 @@ headerbar {
   &:backdrop {
     //box-shadow: inset 0 1px $top_hilight;
     transition: $backdrop_transition;
+  }
 
-    &, label.title, label.subtitle {
-      @if $variant == "light" or $variant == "dark" {
-        color: $backdrop_fg_color;
-      }
-
-      @if $darker == true {
-        color: $light_backdrop_fg_color;
-      }
+  label {
+    &:backdrop {
+      color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
     }
   }
 
@@ -2490,7 +2508,9 @@ menubar,
     }
 
     &:backdrop {
-      color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
+      label {
+        color: if($darker == true, $light_backdrop_fg_color, $backdrop_fg_color);
+      }
     }
   }
 }
@@ -2983,6 +3003,7 @@ notebook {
  * Scrollbars *
  **************/
 scrollbar {
+  margin: -1px;
   min-width: 15px;
 
   $_slider_min_length: 40px;
@@ -4565,6 +4586,30 @@ filechooser {
 
   #pathbarbox {
     border-bottom: 1px solid $bg_color;
+
+    button {
+      @include button(normal);
+
+      &:hover {
+        @include button(hover);
+      }
+
+      &:active {
+        @include button(active);
+      }
+
+      &:disabled {
+        @include button(insensitive);
+      }
+
+      &:backdrop {
+        @include button(backdrop);
+      }
+
+      &:backdrop:disabled {
+        @include button(backdrop-insensitive);
+      }
+    }
   }
 }
 
